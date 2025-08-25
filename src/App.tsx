@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/create" element={<Create />} />
+      <Route path="/create/:template_id" element={<Create />} />
       <Route path="/share" element={<Share />} />
       <Route path="/view/:card_id" element={<View />} />
       <Route path="*" element={<NotFound />} />
