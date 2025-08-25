@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
+/* TODO update color variables */
+:root {
+  --color-primary: #ff6f61;
+  --color-secondary: #4a90e2;
+  --color-accent: #50e3c2;
+  --color-background: ##000000;
+  --color-text: #ffffff;
+}
+
 html {
+  padding: 0;
+  margin: 0;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
+  background-color: black;
+  color: white;
 }
 
 h1,
@@ -15,6 +28,7 @@ h6 {
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: italic;
+  line-height: 100%;
 }
 
 h1 {
