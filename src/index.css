@@ -38,3 +38,12 @@ h1 {
 p {
   font-size: 1rem;
 }
+
+.background-gradient {
+  background-image: url("./public/gradient-bg-wide.jpg");
+  background-position: center;
+  background-size: cover;
+  /* background: linear-gradient(90deg, #ff6f61, #4a90e2, #50e3c2); */
+  /* background-size: 600% 600%; */
+  /* animation: gradientAnimation 16s ease infinite; */
+}
