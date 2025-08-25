@@ -1,9 +1,18 @@
-function App() {
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Create from "./pages/Create";
+import Share from "./pages/Share";
+import View from "./pages/View";
+import NotFound from "./pages/NotFound";
+
+export default function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">hello world!!!</h1>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/create" element={<Create />} />
+      <Route path="/share" element={<Share />} />
+      <Route path="/view/:card_id" element={<View />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
-
-export default App;
