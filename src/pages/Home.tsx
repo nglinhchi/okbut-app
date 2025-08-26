@@ -1,34 +1,10 @@
-import type { Template } from "../../types";
 import Footer from "../components/Footer";
 import TemplateTile from "../components/TemplateTile";
+import type { Template } from "../../types";
+import { useAppContext } from "../context/AppContext";
 
 export default function Home() {
-  const templates: Template[] = [
-    {
-      id: "1",
-      name: "Template 1",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
-      image_url: "/src/assets/duck.jpg",
-      preview_card_id: "00000001",
-    },
-    {
-      id: "2",
-      name: "Template 2",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
-      image_url: "/src/assets/gradient.webp",
-      preview_card_id: "00000002",
-    },
-    {
-      id: "3",
-      name: "Template 3",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
-      image_url: "/src/assets/confetti.jpg",
-      preview_card_id: "00000003",
-    },
-  ];
+  const { templates } = useAppContext();
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -41,8 +17,8 @@ export default function Home() {
         </p>
       </div>
       {/* TODO need consolidate grid layout */}
-        {templates.map((template) => (
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 app-gradient h-fit w-full py-32 px-[10vw] justify-items-center align-items-center">
+        {templates.map((template: Template) => (
           <TemplateTile key={template.id} {...template} />
         ))}
       </div>
