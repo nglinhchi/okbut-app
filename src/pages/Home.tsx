@@ -10,6 +10,7 @@ export default function Home() {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
       image_url: "/src/assets/duck.jpg",
+      preview_card_id: "00000001",
     },
     {
       id: "2",
@@ -17,6 +18,7 @@ export default function Home() {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
       image_url: "/src/assets/gradient.webp",
+      preview_card_id: "00000002",
     },
     {
       id: "3",
@@ -24,8 +26,10 @@ export default function Home() {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.",
       image_url: "/src/assets/confetti.jpg",
+      preview_card_id: "00000003",
     },
   ];
+
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="hero-section flex flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full">

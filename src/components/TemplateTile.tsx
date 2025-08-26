@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Template } from "../../types";
 
 export default function TemplateTile(template: Template) {
@@ -12,10 +13,12 @@ export default function TemplateTile(template: Template) {
       <p>{template.description}</p>
       <div className="flex flex-row gap-4 w-full">
         <button className="bg-gray-200 text-black px-4 py-2 rounded-xl mt-4 self-center hover:bg-gray-800 transition w-full">
-          PREVIEW
+          <Link to={`/view/${template.preview_card_id}`} target="_blank">
+            PREVIEW
+          </Link>
         </button>
         <button className="bg-black text-white px-4 py-2 rounded-xl mt-4 self-center hover:bg-gray-800 transition w-full">
-          CREATE
+          <Link to={`/create/${template.id}`}>CREATE</Link>
         </button>
       </div>
     </div>

@@ -13,4 +13,5 @@ export interface Template {
   name: string;
   description: string;
   image_url: string;
+  preview_card_id: string;
 }
