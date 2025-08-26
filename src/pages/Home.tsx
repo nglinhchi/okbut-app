@@ -1,4 +1,5 @@
 import type { Template } from "../../types";
+import Footer from "../components/Footer";
 import TemplateTile from "../components/TemplateTile";
 
 export default function Home() {
@@ -35,12 +36,13 @@ export default function Home() {
           heartfelt appreciation note, we got you covered.
         </p>
       </div>
-      {/* TODO need consolidate grid layout again */}
+      {/* TODO need consolidate grid layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 background-gradient h-fit w-full py-32 px-[10vw] justify-items-center align-items-center">
         {templates.map((template) => (
           <TemplateTile key={template.id} {...template} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
