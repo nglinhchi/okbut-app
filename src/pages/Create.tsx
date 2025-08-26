@@ -10,23 +10,18 @@ export default function Create() {
   const template: Template | undefined = templates.find(
     (t) => t.id === template_id
   );
-  const isValidTemplate = template !== undefined;
+  const isValidTemplate = template_id && template !== undefined;
 
   return (
-    <div className="flex flex-col w-full app-gradient">
+    <div className="flex flex-col w-full h-screen app-gradient items-center justify-center">
       {!isValidTemplate ? (
         // TODO handle invalid template_id (show error message)
         <></>
       ) : (
-        <>
-          {/* <div className="flex flex-col items-center justify-center gap-12 px-[20vw] py-[10vh] text-center w-full">
-            <h2>Card is cooking...</h2>
-          </div> */}
-          <div className="h-fit w-full px-[10vw] py-[15vh] flex flex-row items-start justify-center">
-            <TemplateTileStatic {...template} />
-            <CreateCardForm />
-          </div>
-        </>
+        <div className="h-fit w-full px-[10vw] py-[15vh] flex flex-row items-start justify-center">
+          <TemplateTileStatic {...template} />
+          <CreateCardForm template_id={template_id} />
+        </div>
       )}
     </div>
   );
