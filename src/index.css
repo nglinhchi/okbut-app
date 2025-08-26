@@ -35,11 +35,15 @@ h1 {
   font-size: 4rem;
 }
 
+h2 {
+  font-size: 3rem;
+}
+
 p {
   font-size: 1rem;
 }
 
-.background-gradient {
+.app-gradient {
   background-image: url("./public/gradient-bg-wide.jpg");
   background-position: center;
   background-size: cover;

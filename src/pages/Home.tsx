@@ -41,8 +41,8 @@ export default function Home() {
         </p>
       </div>
       {/* TODO need consolidate grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 background-gradient h-fit w-full py-32 px-[10vw] justify-items-center align-items-center">
         {templates.map((template) => (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 app-gradient h-fit w-full py-32 px-[10vw] justify-items-center align-items-center">
           <TemplateTile key={template.id} {...template} />
         ))}
       </div>
