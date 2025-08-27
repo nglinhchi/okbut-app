@@ -21,7 +21,7 @@ export default function Button(props: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`${variantClassName} px-12 py-2 rounded-xl w-fit h-fit transition ${className}`}
+      className={`${variantClassName} px-12 py-2 rounded-xl w-fit h-fit transition border border-gray-300 ${className}`}
       {...rest}
     >
       {children}
