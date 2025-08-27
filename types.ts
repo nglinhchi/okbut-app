@@ -15,3 +15,13 @@ export interface Template {
   image_url: string;
   preview_card_id: string;
 }
+
+export interface Gif {
+  id: string;
+  title: string;
+  images: {
+    fixed_height: {
+      url: string;
+    };
+  };
+}
