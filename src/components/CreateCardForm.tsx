@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { CardData } from "../../types";
-import GiphyPicker from "./GiphyPicker";
+import GifPicker from "./GifPicker";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import { nanoid } from "nanoid";
@@ -30,6 +30,10 @@ export default function CreateCardForm(props: { templateId: string }) {
   ) {
     const { name, value } = e.target;
     setFormData((prev: CardData) => ({ ...prev, [name]: value }));
+  }
+
+  function handleGifChange(giphy_id: string) {
+    setFormData((prev: CardData) => ({ ...prev, giphy_id }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -89,9 +93,9 @@ export default function CreateCardForm(props: { templateId: string }) {
         rows={4}
         required
       />
-      <GiphyPicker />
+      <GifPicker onChange={handleGifChange} />
       {!isValidFormData && invalidInputMessage}
-      <Button onClick={handleSubmit} className="self-end">
+      <Button onClick={handleSubmit} className="mt-6 self-end">
         GENERATE CARD
       </Button>
     </div>
