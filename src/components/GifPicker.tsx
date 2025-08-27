@@ -15,8 +15,9 @@ export default function GifPicker(props: GifPickerProps) {
    - [x] button to search
    - [x] bubble to show gifs in single row
   - [x] gif on click
-    - [ ] call a prop function to set giphy_id in parent form 
+    - [x] call a prop function to set giphy_id in parent form 
     - [x] collapse the picker
+  - [ ] press enter to search
    */
   const { onChange } = props;
   const [keyword, setKeyword] = useState("");

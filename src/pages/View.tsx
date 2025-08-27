@@ -34,7 +34,16 @@ export default function View() {
 
       {/* foreground content */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-[10vw] py-[10vh] gap-[5vh]">
-        <Card className="h-[70vh]" />
+        <Card className="h-[70vh] flex flex-col items-center justify-center">
+          <p>from: {card.sender}</p>
+          <p>to: {card.recipient}</p>
+          <p>message: {card.message}</p>
+          <img
+            src={`https://media.giphy.com/media/${card.giphy_id}/giphy.gif`}
+            alt="Selected GIF"
+            className="max-h-96 w-auto mx-auto"
+          />
+        </Card>
         <div className="signature flex flex-row items-center justify-center gap-2 text-center text-sm text-black h-[5vh]">
           <p>created with</p>
           <Logo />
