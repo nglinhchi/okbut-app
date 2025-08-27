@@ -23,7 +23,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.signature {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 800;
@@ -99,4 +100,8 @@ button:hover {
 
 .bg-accent {
   background-color: var(--color-accent);
+}
+
+.logo {
+  font-size: 2.5rem;
 }
