@@ -44,11 +44,11 @@ p {
 }
 
 .app-gradient {
-  background-image: url("./public/gradient-bg-wide.jpg");
+  background-image: url("/gradient-bg-wide.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* animation: gradientAnimation 16s ease infinite; */
+  min-height: 100vh;
 }
 
 .template-tile > p:first-of-type {
