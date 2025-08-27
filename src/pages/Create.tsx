@@ -13,12 +13,12 @@ export default function Create() {
   const isValidTemplate = template_id && template !== undefined;
 
   return (
-    <div className="flex flex-col w-full h-screen app-gradient items-center justify-center">
+    <div className="flex flex-col w-full min-h-screen h-fit app-gradient items-center justify-center">
       {!isValidTemplate ? (
         // TODO handle invalid template_id (show error message)
         <></>
       ) : (
-        <div className="h-fit w-full px-[10vw] py-[15vh] flex flex-row items-start justify-center">
+        <div className="h-fit w-full px-[10vw] py-[15vh] flex md:flex-row flex-col items-start justify-center gap-8">
           <TemplateTileStatic {...template} />
           <CreateCardForm template_id={template_id} />
         </div>

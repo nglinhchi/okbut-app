@@ -50,7 +50,7 @@ export default function CreateCardForm(props: { template_id: string }) {
   }
 
   return (
-    <div className="w-3/5 h-fit bg-white rounded-2xl p-8 ml-8 text-black shadow-xl flex flex-col gap-4">
+    <div className="md:w-3/5 w-full h-fit bg-white rounded-2xl p-8 text-black shadow-xl flex flex-col gap-4">
       <Input
         name="sender"
         value={formData.sender}
