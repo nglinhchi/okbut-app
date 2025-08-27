@@ -4,7 +4,7 @@
 :root {
   --color-primary: #e6b7f9;
   --color-secondary: #fd9292;
-  --color-accent: #50e3c2;
+  --color-accent: #9125bc;
   --color-background: ##000000;
   --color-text: #ffffff;
 }
@@ -27,28 +27,34 @@ h6 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 800;
-  font-style: italic;
   line-height: 100%;
 }
 
 h1 {
   font-size: 4rem;
+  font-style: italic;
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 p {
   font-size: 1rem;
 }
 
-.app-gradient {
+.app-gradient-sm {
+  background-image: url("/gradient-bg-compact.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.app-gradient-lg {
   background-image: url("/gradient-bg-wide.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
 }
 
 .template-tile > p:first-of-type {
@@ -69,4 +75,28 @@ button:hover {
   opacity: 0.9;
   background-color: var(--color-primary);
   color: black;
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+.color-accent {
+  color: var(--color-accent);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
 }
