@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import type { CardData } from "../../types";
 import Card from "../components/Card";
 import Logo from "../components/Logo";
-import Footer from "../components/Footer";
 
 export default function View() {
   const { card_id: cardId } = useParams<{ card_id: string }>();
