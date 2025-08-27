@@ -19,6 +19,14 @@ export async function getCardById(id: string) {
     .eq("id", id)
     .single();
 
-  if (error) throw error;
+  if (error) {
+    if (error.code === "PGRST116") {
+      // No rows returned
+      console.warn(`Card with ID "${id}" not found.`);
+    } else {
+      console.error("Supabase error:", error.message);
+    }
+    return null;
+  }
   return data;
 }
