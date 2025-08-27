@@ -6,9 +6,12 @@ import TextArea from "./TextArea";
 import { nanoid } from "nanoid";
 import { insertCard } from "../../lib/queries";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateCardForm(props: { templateId: string }) {
   const { templateId: template_id } = props;
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<CardData>({
     id: nanoid(),
@@ -22,7 +25,7 @@ export default function CreateCardForm(props: { templateId: string }) {
   const [isValidFormData, setIsValidFormData] = useState(true);
 
   const invalidInputMessage = (
-    <div className="color-accent">Please fill in all fields correctly.</div>
+    <div className="color-accent">Please fill in all fields correctly D:</div>
   );
 
   function handleChange(
@@ -42,18 +45,18 @@ export default function CreateCardForm(props: { templateId: string }) {
     const isValidSender = formData.sender.trim().length > 0;
     const isValidRecipient = formData.recipient.trim().length > 0;
     const isValidMessage = formData.message.trim().length > 0;
+    const pickedGif = formData.giphy_id.trim().length > 0;
 
-    if (isValidSender && isValidRecipient && isValidMessage) {
+    if (isValidSender && isValidRecipient && isValidMessage && pickedGif) {
       setIsValidFormData(true);
       try {
-        const { data, error } = await insertCard(formData);
+        const { error } = await insertCard(formData);
 
         if (error) {
           // TODO show error to user, please try again screen, go to home button.
           console.error("Insert failed:", error.message);
         } else {
-          // TODO redirect to share page
-          console.log("Insert success:", data);
+          navigate(`/share?card_id=${formData.id}`);
         }
       } catch (err) {
         // TODO show error to user, please try again screen, go to home button.

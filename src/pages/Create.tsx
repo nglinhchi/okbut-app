@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 export default function Create() {
   const { template_id: templateId } = useParams<{ template_id: string }>();
   const { templates } = useAppContext();
+
   const template: Template | undefined = templates.find(
     (t) => t.id === templateId
   );
