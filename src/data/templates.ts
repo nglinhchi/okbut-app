@@ -1,5 +1,7 @@
 import type { Template } from "../../types";
 
+// TODO consider use nanoid values for card ids
+
 export const TEMPLATES: Template[] = [
   {
     id: "1",
