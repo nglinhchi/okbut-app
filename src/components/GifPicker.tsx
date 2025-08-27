@@ -9,16 +9,7 @@ interface GifPickerProps {
 }
 
 export default function GifPicker(props: GifPickerProps) {
-  /**
-  - [x] label 
-  - [x] input receiving text
-   - [x] button to search
-   - [x] bubble to show gifs in single row
-  - [x] gif on click
-    - [x] call a prop function to set giphy_id in parent form 
-    - [x] collapse the picker
-  - [ ] press enter to search
-   */
+  // TODO [low] search on pressing enter key
   const { onChange } = props;
   const [keyword, setKeyword] = useState("");
   const [gifs, setGifs] = useState<Gif[]>([]);
