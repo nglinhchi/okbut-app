@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import TemplateTileStatic from "../components/StaticTemplateTile";
 import type { Template } from "../../types";
@@ -6,12 +6,12 @@ import CreateCardForm from "../components/CreateCardForm";
 import Footer from "../components/Footer";
 
 export default function Create() {
-  const { template_id } = useParams<{ template_id: string }>();
+  const templateId = useSearchParams()[0].get("template_id");
   const { templates } = useAppContext();
   const template: Template | undefined = templates.find(
-    (t) => t.id === template_id
+    (t) => t.id === templateId
   );
-  const isValidTemplate = template_id && template !== undefined;
+  const isValidTemplate = templateId && template !== undefined;
 
   return (
     <div>
@@ -26,7 +26,7 @@ export default function Create() {
           <div className="flex flex-col w-full h-fit app-gradient-lg items-center justify-center">
             <div className="h-fit w-full px-[10vw] py-[15vh] flex md:flex-row flex-col items-start justify-center gap-8">
               <TemplateTileStatic {...template} />
-              <CreateCardForm template_id={template_id} />
+              <CreateCardForm templateId={templateId} />
             </div>
           </div>
         </div>

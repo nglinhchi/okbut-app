@@ -7,8 +7,8 @@ import { nanoid } from "nanoid";
 import { insertCard } from "../../lib/queries";
 import Button from "./Button";
 
-export default function CreateCardForm(props: { template_id: string }) {
-  const { template_id } = props;
+export default function CreateCardForm(props: { templateId: string }) {
+  const { templateId: template_id } = props;
 
   const [formData, setFormData] = useState<CardData>({
     id: nanoid(),
