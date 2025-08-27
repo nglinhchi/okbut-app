@@ -11,13 +11,13 @@ export default function Home() {
       <div className="hero-section flex flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full">
         <h1>Ok, but...</h1>
         <p className="lg:w-[40%]">
-          <strong>okbut.io</strong> lets you send fun, personalised cards to
-          your special ones. Whether it's an out-of-the-blue joke, or a
-          heartfelt appreciation note, we got you covered.
+          <strong>OKBUT.io</strong> lets you send fun, personalised interactive
+          cards to your special ones. Whether it's an unhinged inside joke or a
+          heartfelt appreciation note, we got you covered :&#41;
         </p>
       </div>
       {/* TODO need consolidate grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 app-gradient-lg h-fit w-full py-32 px-[10vw] justify-items-center align-items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 app-gradient-lg h-fit w-full py-[5vh] px-[10vw] justify-items-center align-items-center text-black">
         {templates.map((template: Template) => (
           <TemplateTile key={template.id} {...template} />
         ))}
