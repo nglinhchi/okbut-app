@@ -5,9 +5,11 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import { nanoid } from "nanoid";
 import { insertCard } from "../../lib/queries";
+import Button from "./Button";
 
 export default function CreateCardForm(props: { template_id: string }) {
   const { template_id } = props;
+
   const [formData, setFormData] = useState<CardData>({
     id: nanoid(),
     template_id: template_id,
@@ -16,6 +18,12 @@ export default function CreateCardForm(props: { template_id: string }) {
     message: "",
     giphy_id: "",
   });
+
+  const [isValidFormData, setIsValidFormData] = useState(true);
+
+  const invalidInputMessage = (
+    <div className="color-accent">Please fill in all fields correctly.</div>
+  );
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,20 +40,23 @@ export default function CreateCardForm(props: { template_id: string }) {
     const isValidMessage = formData.message.trim().length > 0;
 
     if (isValidSender && isValidRecipient && isValidMessage) {
+      setIsValidFormData(true);
       try {
         const { data, error } = await insertCard(formData);
 
         if (error) {
+          // TODO show error to user, please try again screen, go to home button.
           console.error("Insert failed:", error.message);
         } else {
+          // TODO redirect to share page
           console.log("Insert success:", data);
-          // You can redirect or show success here
         }
       } catch (err) {
+        // TODO show error to user, please try again screen, go to home button.
         console.error("Unexpected error:", err);
       }
     } else {
-      console.warn("Form validation failed");
+      setIsValidFormData(false);
     }
   }
 
@@ -79,12 +90,10 @@ export default function CreateCardForm(props: { template_id: string }) {
         required
       />
       <GiphyPicker />
-      <button
-        className="bg-black text-white px-12 py-2 rounded-xl mt-4 hover:bg-gray-800 transition w-fit self-end"
-        onClick={handleSubmit}
-      >
+      {!isValidFormData && invalidInputMessage}
+      <Button onClick={handleSubmit} className="self-end">
         GENERATE CARD
-      </button>
+      </Button>
     </div>
   );
 }
