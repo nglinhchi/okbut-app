@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
-import Footer from "../components/Footer";
+import Button from "../components/shared/Button";
+import Footer from "../components/shared/Footer";
 
 export default function NotFound() {
   return (
