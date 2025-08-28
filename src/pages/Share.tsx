@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import ShareLink from "../components/ShareLink";
+import TypeWriter from "typewriter-effect";
 
 export default function Share() {
   const cardId = useSearchParams()[0].get("card_id");
@@ -14,7 +15,13 @@ export default function Share() {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="hero-section flex flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full">
-        <h1>Hooooooooray!</h1>
+        <h1>
+          <TypeWriter
+            onInit={(typewriter) => {
+              typewriter.typeString("Hooooooooray!").start();
+            }}
+          />
+        </h1>
         <h2>
           Your card is now <br />
           ready to share.
