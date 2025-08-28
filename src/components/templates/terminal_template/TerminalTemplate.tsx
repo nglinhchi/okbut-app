@@ -1,10 +1,10 @@
-import type { TemplateProps } from "../../pages/View";
+import type { TemplateProps } from "../../../pages/View";
 
-export default function MinimalistTemplate(props: TemplateProps) {
+export default function TerminalTemplate(props: TemplateProps) {
   const { card } = props;
   return (
     <div>
-      Minimalist Template:
+      Terminal Template:
       <p>from: {card.sender}</p>
       <p>to: {card.recipient}</p>
       <p>message: {card.message}</p>

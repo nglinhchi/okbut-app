@@ -1,10 +1,10 @@
-import type { TemplateProps } from "../../pages/View";
+import type { TemplateProps } from "../../../pages/View";
 
-export default function DuckTemplate(props: TemplateProps) {
+export default function MinimalistTemplate(props: TemplateProps) {
   const { card } = props;
   return (
     <div>
-      Duck Template:
+      Minimalist Template:
       <p>from: {card.sender}</p>
       <p>to: {card.recipient}</p>
       <p>message: {card.message}</p>

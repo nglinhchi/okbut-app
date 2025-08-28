@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
-import TemplateTileStatic from "../components/StaticTemplateTile";
+import TemplateTileStatic from "../components/shared/StaticTemplateTile";
 import type { Template } from "../../types";
-import CreateCardForm from "../components/CreateCardForm";
-import Footer from "../components/Footer";
+import CreateCardForm from "../components/shared/CreateCardForm";
+import Footer from "../components/shared/Footer";
 import TypeWriter from "typewriter-effect";
 
 export default function Create() {

@@ -1,5 +1,5 @@
-import Footer from "../components/Footer";
-import TemplateTile from "../components/TemplateTile";
+import Footer from "../components/shared/Footer";
+import TemplateTile from "../components/shared/TemplateTile";
 import type { Template } from "../../types";
 import { useAppContext } from "../context/AppContext";
 import TypeWriter from "typewriter-effect";

@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { getCardById } from "../../lib/queries";
 import { useParams } from "react-router-dom";
 import type { CardData } from "../../types";
-import Card from "../components/Card";
-import Logo from "../components/Logo";
-import Loading from "../components/Loading";
+import Card from "../components/shared/Card";
+import Logo from "../components/shared/Logo";
+import Loading from "../components/shared/Loading";
 import NotFound from "./NotFound";
-import TerminalTemplate from "../components/templates/TerminalTemplate";
-import MinimalistTemplate from "../components/templates/MinimalisticTemplate";
-import DuckTemplate from "../components/templates/DuckTemplate";
+import TerminalTemplate from "../components/templates/terminal_template/TerminalTemplate";
+import MinimalistTemplate from "../components/templates/minimalistic_template/MinimalisticTemplate";
+import DuckTemplate from "../components/templates/duck_template/DuckTemplate";
 
 // props interface used by all templates
 export interface TemplateProps {

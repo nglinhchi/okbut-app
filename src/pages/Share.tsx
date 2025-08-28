@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import Footer from "../components/Footer";
-import ShareLink from "../components/ShareLink";
+import Footer from "../components/shared/Footer";
+import ShareLink from "../components/shared/ShareLink";
 import TypeWriter from "typewriter-effect";
 
 export default function Share() {

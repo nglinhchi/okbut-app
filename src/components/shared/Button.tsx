@@ -1,4 +1,4 @@
-import { cn } from "../../lib/utils";
+import { cn } from "../../../lib/utils";
 const BUTTON_VARIANTS = {
   default: "bg-black text-white",
   muted: "bg-gray-200 text-black",
