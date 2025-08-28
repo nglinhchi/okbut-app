@@ -6,6 +6,14 @@ import Card from "../components/Card";
 import Logo from "../components/Logo";
 import Loading from "../components/Loading";
 import NotFound from "./NotFound";
+import TerminalTemplate from "../components/templates/TerminalTemplate";
+import MinimalistTemplate from "../components/templates/MinimalisticTemplate";
+import DuckTemplate from "../components/templates/DuckTemplate";
+
+// props interface used by all templates
+export interface TemplateProps {
+  card: CardData;
+}
 
 export default function View() {
   const { card_id: cardId } = useParams<{ card_id: string }>();
@@ -26,8 +34,21 @@ export default function View() {
   if (loading) return <Loading />;
   if (!card) return <NotFound />; // TODO redirect to 404 page
 
-  // TODO validate template_id
-  // TODO pick template component based on template_id
+  const templateId = card.template_id;
+  let cardTemplate: React.ReactNode;
+  switch (templateId) {
+    case "1":
+      cardTemplate = <DuckTemplate card={card} />;
+      break;
+    case "2":
+      cardTemplate = <MinimalistTemplate card={card} />;
+      break;
+    case "3":
+      cardTemplate = <TerminalTemplate card={card} />;
+      break;
+    default:
+      return <NotFound />;
+  }
 
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -37,14 +58,7 @@ export default function View() {
       {/* foreground content */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-[10vw] py-[10vh] gap-[5vh]">
         <Card className="h-[70vh] flex flex-col items-center justify-center">
-          <p>from: {card.sender}</p>
-          <p>to: {card.recipient}</p>
-          <p>message: {card.message}</p>
-          <img
-            src={`https://media.giphy.com/media/${card.giphy_id}/giphy.gif`}
-            alt="Selected GIF"
-            className="max-h-96 w-auto mx-auto"
-          />
+          {cardTemplate}
         </Card>
         <div className="signature flex flex-row items-center justify-center gap-2 text-center text-sm text-black h-[5vh]">
           <p>created with</p>
