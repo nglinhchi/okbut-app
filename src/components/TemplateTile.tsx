@@ -12,7 +12,7 @@ export default function TemplateTile(template: Template) {
       />
       <p>{template.name}</p>
       <p>{template.description}</p>
-      <div className="flex flex-row gap-4 w-full">
+      <div className="flex flex-col xl:flex-row xl:gap-4 w-full">
         <Button variant="muted" className="mt-4 w-full">
           <Link to={`/view/${template.preview_card_id}`} target="_blank">
             PREVIEW

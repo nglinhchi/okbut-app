@@ -1,3 +1,4 @@
+import { cn } from "../../lib/utils";
 const BUTTON_VARIANTS = {
   default: "bg-black text-white",
   muted: "bg-gray-200 text-black",
@@ -21,7 +22,11 @@ export default function Button(props: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`${variantClassName} px-12 py-2 rounded-xl w-fit h-fit transition border border-gray-300 ${className}`}
+      className={cn(
+        variantClassName,
+        "px-6 py-2 rounded-xl w-fit h-fit transition border border-gray-300",
+        className
+      )}
       {...rest}
     >
       {children}
