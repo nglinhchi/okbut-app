@@ -53,14 +53,13 @@ export default function CreateCardForm(props: { templateId: string }) {
         const { error } = await insertCard(formData);
 
         if (error) {
-          // TODO show error to user, please try again screen, go to home button.
-          console.error("Insert failed:", error.message);
+          navigate(`/invalid?code=${error.code}`);
         } else {
           navigate(`/share?card_id=${formData.id}`);
         }
       } catch (err) {
-        // TODO show error to user, please try again screen, go to home button.
-        console.error("Unexpected error:", err);
+        console.warn(err);
+        navigate(`/invalid?code=500`);
       }
     } else {
       setIsValidFormData(false);
@@ -98,7 +97,7 @@ export default function CreateCardForm(props: { templateId: string }) {
       />
       <GifPicker onChange={handleGifChange} />
       {!isValidFormData && invalidInputMessage}
-      <Button onClick={handleSubmit} className="mt-6 self-end">
+      <Button onClick={handleSubmit} className="mt-10 self-end">
         GENERATE CARD
       </Button>
     </div>

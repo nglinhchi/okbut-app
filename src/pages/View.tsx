@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import type { CardData } from "../../types";
 import Card from "../components/Card";
 import Logo from "../components/Logo";
+import Loading from "../components/Loading";
+import NotFound from "./NotFound";
 
 export default function View() {
   const { card_id: cardId } = useParams<{ card_id: string }>();
@@ -21,8 +23,8 @@ export default function View() {
     fetchCard();
   }, [cardId]);
 
-  if (loading) return <div>Loading...</div>; // TODO implement loading page
-  if (!card) return <div>Card not found</div>; // TODO redirect to 404 page
+  if (loading) return <Loading />;
+  if (!card) return <NotFound />; // TODO redirect to 404 page
 
   // TODO validate template_id
   // TODO pick template component based on template_id
