@@ -3,9 +3,11 @@ import Input from "./Input";
 import Button from "./Button";
 import { getGifs } from "../../lib/giphy";
 import type { Gif } from "../../types";
+import Icon from "./Icon";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 interface GifPickerProps {
-  onChange: (giphygiphy_id: string) => void;
+  onChange: (giphy_id: string) => void;
 }
 
 export default function GifPicker(props: GifPickerProps) {
@@ -24,7 +26,7 @@ export default function GifPicker(props: GifPickerProps) {
   };
 
   const panel = (
-    <div className="z-50 w-full h-40 bg-primary backdrop-blur-md rounded-lg p-4 overflow-x-scroll flex flex-row gap-4">
+    <div className="z-50 w-full h-40 bg-black backdrop-blur-md rounded-lg p-4 overflow-x-scroll flex flex-row gap-4">
       {gifs.length === 0 ? (
         <p className="italic text-gray-400">No GIFs found</p>
       ) : (
@@ -74,7 +76,7 @@ export default function GifPicker(props: GifPickerProps) {
           onChange={(e) => setKeyword(e.target.value)}
         />
         <Button variant="muted" onClick={handleSearch} className="px-2">
-          SEARCH
+          <Icon icon={faMagnifyingGlass} />
         </Button>
       </div>
       {openPanel && panel}
