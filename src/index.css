@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-/* TODO update color variables */
 :root {
   --color-primary: #e6b7f9;
-  --color-secondary: #fd9292;
+  --color-secondary: #8880ff;
+  --color-tertiary: #fd9292;
   --color-accent: #9125bc;
   --color-background: ##000000;
   --color-text: #ffffff;
@@ -24,7 +24,8 @@ h3,
 h4,
 h5,
 h6,
-.signature {
+.signature,
+.logo {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 800;
@@ -103,5 +104,9 @@ button:hover {
 }
 
 .logo {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
+}
+
+strong {
+  font-weight: 700;
 }
