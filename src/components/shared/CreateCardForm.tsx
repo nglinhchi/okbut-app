@@ -1,10 +1,10 @@
 import { useState } from "react";
-import type { CardData } from "../../types";
+import type { CardData } from "../../../types";
 import GifPicker from "./GifPicker";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import { nanoid } from "nanoid";
-import { insertCard } from "../../lib/queries";
+import { insertCard } from "../../../lib/queries";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 

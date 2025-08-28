@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
-import { getGifs } from "../../lib/giphy";
-import type { Gif } from "../../types";
+import { getGifs } from "../../../lib/giphy";
+import type { Gif } from "../../../types";
 import Icon from "./Icon";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 

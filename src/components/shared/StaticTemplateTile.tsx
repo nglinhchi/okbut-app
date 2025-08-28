@@ -1,4 +1,4 @@
-import type { Template } from "../../types";
+import type { Template } from "../../../types";
 
 export default function StaticTemplateTile(template: Template) {
   return (

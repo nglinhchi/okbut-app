@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Template } from "../../types";
+import type { Template } from "../../../types";
 import Button from "./Button";
 
 export default function TemplateTile(template: Template) {
