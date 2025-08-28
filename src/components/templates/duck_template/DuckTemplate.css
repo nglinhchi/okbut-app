@@ -1,0 +1,16 @@
+:root {
+  --template-primary: #ffb700;
+  --template-secondary: #ffd900;
+}
+
+/* 
+TODO pixelated font for headings
+*/
+
+.bg-primary {
+  background-color: var(--template-primary);
+}
+
+.bg-secondary {
+  background-color: var(--template-secondary);
+}
