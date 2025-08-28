@@ -2,6 +2,7 @@ import Footer from "../components/Footer";
 import TemplateTile from "../components/TemplateTile";
 import type { Template } from "../../types";
 import { useAppContext } from "../context/AppContext";
+import TypeWriter from "typewriter-effect";
 
 export default function Home() {
   const { templates } = useAppContext();
@@ -9,7 +10,17 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="hero-section flex flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full">
-        <h1>Ok, but...</h1>
+        <h1>
+          <TypeWriter
+            onInit={(typewriter) => {
+              typewriter
+                .typeString("Ok, but...")
+                .pauseFor(2000)
+                .typeString(" hear me out.")
+                .start();
+            }}
+          />
+        </h1>
         <p className="lg:w-[40%]">
           <strong>OKBUT.io</strong> lets you send fun, personalised interactive
           cards to your special ones. Whether it's an unhinged inside joke or a
