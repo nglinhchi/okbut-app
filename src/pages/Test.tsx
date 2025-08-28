@@ -1,8 +1,42 @@
 import { useEffect, useState } from "react";
 import { getGifs } from "../../lib/giphy";
 import type { Gif } from "../../types";
+import TypeWriter from "typewriter-effect";
 
-export default function Test() {
+// put 'default' to component currently testing
+
+export default function TypeWriterLibrary() {
+  const typeWriter = (
+    <TypeWriter
+      onInit={(typewriter) => {
+        typewriter
+          .typeString("Ok, but...")
+          .pauseFor(500)
+          .deleteAll()
+          .typeString("Ok, but... cards?")
+          .pauseFor(500)
+          .deleteAll()
+          .typeString("Ok, but... interactive?")
+          .pauseFor(500)
+          .deleteAll()
+          .typeString("Ok, but... fun?")
+          .pauseFor(500)
+          .deleteAll()
+          .typeString("Ok, but... personal?")
+          .pauseFor(500)
+          .deleteAll()
+          .typeString("Ok, but... why not?")
+          .pauseFor(500)
+          .start();
+      }}
+    />
+  );
+
+  return typeWriter;
+}
+
+// connect giphy api
+export function GiphyApi() {
   const keyword = "cars";
   const [gifs, setGifs] = useState<Gif[]>([]);
   useEffect(() => {
