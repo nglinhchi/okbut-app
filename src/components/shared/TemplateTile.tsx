@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { Template } from "../../../types";
 import Button from "./Button";
 
