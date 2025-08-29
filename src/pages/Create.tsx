@@ -5,6 +5,7 @@ import type { Template } from "../../types";
 import CreateCardForm from "../components/shared/CreateCardForm";
 import Footer from "../components/shared/Footer";
 import TypeWriter from "typewriter-effect";
+import ScrollToTop from "../components/shared/ScrollToTop";
 
 export default function Create() {
   const { template_id: templateId } = useParams<{ template_id: string }>();
@@ -22,8 +23,9 @@ export default function Create() {
         <></>
       ) : (
         <div className="flex flex-col items-center justify-center w-full">
-          <div className="hero-section flex flex-col items-center justify-center gap-8 px-[20vw] py-[10vh] text-center w-full">
-            <h2 className="italic">
+          <ScrollToTop />
+          <div className="hero-section flex flex-col items-center justify-center gap-8 px-[20vw] py-[5vh] text-center w-full">
+            <h2>
               <TypeWriter
                 onInit={(typewriter) => {
                   typewriter
