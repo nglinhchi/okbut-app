@@ -100,7 +100,7 @@ export default function CreateCardForm(props: { templateId: string }) {
       />
       <GifPicker onChange={handleGifChange} />
       {!isValidFormData && invalidInputMessage}
-      <Button onClick={handleSubmit} className="mt-10 self-end">
+      <Button onClick={handleSubmit} className="mt-10 self-end w-full md:w-fit">
         GENERATE CARD
       </Button>
     </div>
