@@ -11,14 +11,14 @@ export default function ShareLink(props: ShareLinkProps) {
   const prodDomain = import.meta.env.VITE_DOMAIN_NAME_PROD;
 
   const displayUrl = `${prodDomain}/view/${cardId}`;
-  const url = `${prodDomain}/view/${cardId}`; // NOTE: toggle this for environment
+  const url = `/view/${cardId}`; // NOTE: toggle this for environment
 
   const [copied, setCopied] = useState(false);
 
   const copyButtonText = copied ? "COPIED! :D" : "COPY LINK";
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(displayUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 1000);
   };
