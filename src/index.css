@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #e6b7f9;
+  --color-primary: #ddb7ec;
   --color-secondary: #8880ff;
   --color-tertiary: #fd9292;
   --color-accent: #9125bc;
   --color-background: ##000000;
   --color-text: #ffffff;
+  --color-gradient-1: #7c7cff;
+  --color-gradient-2: #a4a3ff;
+  --color-gradient-3: #dcd9ff;
+  --color-gradient-4: #ffecff;
+  --color-gradient-5: #ffceff;
 }
 
 html {
@@ -46,15 +51,31 @@ p {
   font-size: 1rem;
 }
 
-.app-gradient-sm {
+/* .app-gradient-sm {
   background-image: url("/gradient-bg-compact.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-}
+}*/
 
+.app-gradient-sm,
 .app-gradient-lg {
-  background-image: url("/gradient-bg-wide.jpg");
+  /* background-image: url("/gradient-bg-wide.jpg"); */
+  background-image: linear-gradient(
+      45deg,
+      var(--color-primary) 0%,
+      var(--color-secondary) 100%
+    ),
+    radial-gradient(
+      circle at 70% 30%,
+      var(--color-gradient-1) 0%,
+      transparent 80%
+    ),
+    linear-gradient(
+      -135deg,
+      var(--color-gradient-2) 0%,
+      var(--color-gradient-5) 100%
+    );
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -112,8 +133,8 @@ button:hover {
 .bg-ui-gradient {
   background: linear-gradient(
     90deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
+    var(--color-gradient-2) 0%,
+    var(--color-gradient-1) 100%
   );
 }
 
