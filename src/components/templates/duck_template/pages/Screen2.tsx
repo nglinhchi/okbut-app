@@ -46,7 +46,7 @@ export default function Screen2(props: Screen2Props) {
   return (
     <div
       className={cn(
-        "flex items-center justify-start h-full w-full rounded-xl flex flex-col text-center lg:justify-center lg:text-left lg:flex-row lg:flex-row-reverse gap-12",
+        "flex items-center justify-start h-full w-full rounded-xl flex flex-col text-center lg:justify-center lg:text-left lg:flex-row gap-6 lg:gap-12",
         `${
           duckAction === "die"
             ? "bg-accent"
@@ -56,8 +56,7 @@ export default function Screen2(props: Screen2Props) {
         }`
       )}
     >
-      <DuckSprite action={duckAction} className="mt-[5vh] lg:mt-0" />
-      <div className="flex flex-col items-center pb-[5vh] justify-between flex-1 lg:flex-none lg:justify-start gap-8">
+      <div className="flex flex-col items-center justify-start pt-[5vh] flex-1 lg:flex-none gap-4">
         <h1 className="w-full">
           <TypeWriter
             onInit={(typewriter) => {
@@ -97,6 +96,7 @@ export default function Screen2(props: Screen2Props) {
           />
         </div>
       </div>
+      <DuckSprite action={duckAction} className="mb-[5vh] lg:mb-0" />
     </div>
   );
 }
