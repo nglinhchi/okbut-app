@@ -10,7 +10,7 @@ type ButtonVariant = keyof typeof BUTTON_VARIANTS;
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
   className?: string;
   children?: React.ReactNode;
 }
@@ -22,6 +22,7 @@ export default function Button(props: ButtonProps) {
   return (
     <button
       onClick={onClick}
+      onTouchStart={onClick}
       className={cn(
         variantClassName,
         "px-6 py-2 rounded-xl w-fit h-fit transition border border-gray-300",
