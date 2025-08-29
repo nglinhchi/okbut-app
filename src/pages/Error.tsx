@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Button from "../components/shared/Button";
 
 export default function Error() {
@@ -10,8 +9,8 @@ export default function Error() {
           [ ER-{errorCode || 500} ]
         </div>
         <p>Sorry, an error has occurred... Please try again later :&#40;</p>
-        <Button variant="secondary">
-          <Link to="/">GO HOME</Link>
+        <Button variant="secondary" linkTo="/">
+          GO HOME
         </Button>
       </div>
     </div>

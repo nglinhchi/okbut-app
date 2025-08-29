@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Button from "../components/shared/Button";
 
 export default function NotFound() {
@@ -7,8 +6,8 @@ export default function NotFound() {
       <div className="flex-1 flex flex-col justify-center items-center gap-8 p-16">
         <div className="animate-pulse text-5xl leading-none">[ ER-404 ]</div>
         <p>Ooooopsie... this page doesn't exist :&#40;</p>
-        <Button variant="secondary">
-          <Link to="/">GO HOME</Link>
+        <Button variant="secondary" linkTo="/">
+          GO HOME
         </Button>
       </div>
       {/* <Footer className="mt-auto" /> */}
