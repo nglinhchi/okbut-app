@@ -48,7 +48,7 @@ export default function Screen4({ card }: Screen4Props) {
                   .pauseFor(2000)
                   .typeString("OK. ")
                   .pauseFor(500)
-                  .typeString("THAT WAS FUN! ")
+                  .typeString("THAT WAS AWESOME! ")
                   .pauseFor(1500)
                   .typeString("BUT...")
                   .start();

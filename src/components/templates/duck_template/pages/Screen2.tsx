@@ -56,8 +56,13 @@ export default function Screen2(props: Screen2Props) {
         }`
       )}
     >
-      <div className="flex flex-col items-center justify-start pt-[5vh] flex-1 lg:flex-none gap-4">
-        <h1 className="w-full">
+      <div className="flex flex-col items-center lg:items-start justify-start pt-[5vh] lg:pt-0 flex-1 lg:flex-none gap-4 w-full lg:w-1/2">
+        <h1
+          className={cn(
+            "w-full p-4 lg:p-0",
+            isFeeding ? "opacity-20" : "opacity-100"
+          )}
+        >
           <TypeWriter
             onInit={(typewriter) => {
               typewriter
@@ -68,10 +73,10 @@ export default function Screen2(props: Screen2Props) {
                 .pauseFor(2000)
                 .deleteAll()
                 .typeString(`<br/> I WANTED TO TELL YOU SOMETHING...`)
-                .pauseFor(2000)
+                .pauseFor(3000)
                 .deleteAll()
                 .typeString(`<br /> BUT YOU MUST FEED THE DUCK FIRST...`)
-                .pauseFor(2000)
+                .pauseFor(1500)
                 .typeString(`<br/> BEFORE IT GETS HANGRY!!!`)
                 .start();
             }}
