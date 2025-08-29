@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { cn } from "../../../lib/utils";
 const BUTTON_VARIANTS = {
-  default: "bg-black text-white",
-  muted: "bg-gray-200 text-black",
+  default: "bg-black text-white border border-transparent",
+  muted: "bg-gray-200 text-black border border-gray-300",
   //   primary: "bg-primary text-black", // currently used for hover style
-  secondary: "bg-secondary text-white",
+  secondary: "bg-secondary text-white border border-transparent",
 };
 
 type ButtonVariant = keyof typeof BUTTON_VARIANTS;
@@ -31,7 +31,7 @@ export default function Button(props: ButtonProps) {
 
   const buttonClassName = cn(
     variantClassName,
-    "button font-semibold px-6 py-2 rounded-xl w-fit h-fit transition border border-gray-300 align-middle text-center",
+    "button font-semibold px-6 py-2 rounded-xl w-fit h-fit transition align-middle text-center",
     className
   );
 
