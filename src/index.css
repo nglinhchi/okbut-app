@@ -92,11 +92,7 @@ p {
   color: var(--color-primary);
 }
 
-button {
-  font-weight: 600;
-}
-
-button:hover {
+.button:hover {
   opacity: 0.9;
   background-color: var(--color-tertiary);
   color: black;
