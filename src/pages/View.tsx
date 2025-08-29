@@ -6,8 +6,6 @@ import Card from "../components/shared/Card";
 import Logo from "../components/shared/Logo";
 import Loading from "../components/shared/Loading";
 import NotFound from "./NotFound";
-import TerminalTemplate from "../components/templates/terminal_template/TerminalTemplate";
-import MinimalistTemplate from "../components/templates/minimalistic_template/MinimalisticTemplate";
 import DuckTemplate from "../components/templates/duck_template/DuckTemplate";
 
 // props interface used by all templates
@@ -25,7 +23,6 @@ export default function View() {
       if (!cardId) return;
       const data = await getCardById(cardId);
       setCard(data);
-      console.log(data);
       setLoading(false);
     }
     fetchCard();
@@ -40,12 +37,12 @@ export default function View() {
     case "1":
       cardTemplate = <DuckTemplate card={card} />;
       break;
-    case "2":
-      cardTemplate = <MinimalistTemplate card={card} />;
-      break;
-    case "3":
-      cardTemplate = <TerminalTemplate card={card} />;
-      break;
+    // case "2":
+    //   cardTemplate = <PeekabooTemplate card={card} />;
+    //   break;
+    // case "3":
+    //   cardTemplate = <TerminalTemplate card={card} />;
+    //   break;
     default:
       return <NotFound />;
   }
