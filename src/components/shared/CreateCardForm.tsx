@@ -8,6 +8,8 @@ import { insertCard } from "../../../lib/queries";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
+const MESSAGE_MAX_LENGTH = 250;
+
 export default function CreateCardForm(props: { templateId: string }) {
   const { templateId: template_id } = props;
 
@@ -94,6 +96,7 @@ export default function CreateCardForm(props: { templateId: string }) {
         onChange={handleChange}
         rows={4}
         required
+        maxLength={MESSAGE_MAX_LENGTH}
       />
       <GifPicker onChange={handleGifChange} />
       {!isValidFormData && invalidInputMessage}
