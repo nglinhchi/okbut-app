@@ -1,3 +1,5 @@
+import { cn } from "../../../lib/utils";
+
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   value: string;
@@ -22,16 +24,22 @@ export default function Input(props: InputProps) {
     ...rest
   } = props;
   return (
-    <div className="flex flex-col w-full">
-      <label className="mb-2 text-sm font-medium">{label}</label>
+    <div className="flex flex-col flex-1 min-w-0">
+      <label htmlFor={name} className="mb-2 text-sm font-medium">
+        {label}
+      </label>
       <input
+        id={name}
         name={name}
         value={value}
         type={type}
         placeholder={placeholder}
         onChange={onChange}
         required={required}
-        className={`p-2 border border-gray-300 rounded-md bg-gray-100 focus:border-black focus:outline-none focus:ring-1 focus:ring-black ${className}`}
+        className={cn(
+          `p-2 border border-gray-300 rounded-md bg-gray-100 focus:border-black focus:outline-none focus:ring-1 focus:ring-black`,
+          className
+        )}
         {...rest}
       />
     </div>

@@ -3,7 +3,7 @@ const BUTTON_VARIANTS = {
   default: "bg-black text-white",
   muted: "bg-gray-200 text-black",
   //   primary: "bg-primary text-black", // currently used for hover style
-  secondary: "bg-secondary text-black",
+  secondary: "bg-secondary text-white",
 };
 
 type ButtonVariant = keyof typeof BUTTON_VARIANTS;

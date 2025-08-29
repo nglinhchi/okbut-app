@@ -73,7 +73,7 @@ export default function GifPicker(props: GifPickerProps) {
           placeholder="Ducks"
           onChange={(e) => setKeyword(e.target.value)}
         />
-        <Button variant="muted" onClick={handleSearch} className="px-2">
+        <Button variant="secondary" onClick={handleSearch} className="px-4">
           <Icon icon={faMagnifyingGlass} />
         </Button>
       </div>
