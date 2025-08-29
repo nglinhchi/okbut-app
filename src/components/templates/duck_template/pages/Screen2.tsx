@@ -20,7 +20,7 @@ export default function Screen2(props: Screen2Props) {
   useEffect(() => {
     setTimeout(() => {
       setShowFood(true);
-    }, 15000); // show food options after 15 seconds of typewriting
+    }, 32000); // show food options after 25 seconds of typewriting
   }, []);
 
   function handleFeed(foodType: string) {
@@ -65,10 +65,14 @@ export default function Screen2(props: Screen2Props) {
                 .typeString(`HI ${card.recipient}.`)
                 .pauseFor(500)
                 .typeString(`<br /> IT'S ${card.sender}.`)
-                .pauseFor(1000)
-                .typeString(`<br /> PLEASE FEED ME FOOD...`)
-                .pauseFor(500)
-                .typeString(`<br/> BEFORE I GET HANGRY!`)
+                .pauseFor(2000)
+                .deleteAll()
+                .typeString(`<br/> I WANTED TO TELL YOU SOMETHING...`)
+                .pauseFor(2000)
+                .deleteAll()
+                .typeString(`<br /> BUT YOU MUST FEED THE DUCK FIRST...`)
+                .pauseFor(2000)
+                .typeString(`<br/> BEFORE IT GETS HANGRY!!!`)
                 .start();
             }}
           />
