@@ -57,7 +57,7 @@ export default function Screen2(props: Screen2Props) {
       )}
     >
       <DuckSprite action={duckAction} className="mt-[5vh] lg:mt-0" />
-      <div className="flex flex-col items-center justify-start gap-8">
+      <div className="flex flex-col items-center pb-[5vh] justify-between flex-1 lg:flex-none lg:justify-start gap-8">
         <h1 className="w-full">
           <TypeWriter
             onInit={(typewriter) => {
