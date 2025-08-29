@@ -1,13 +1,19 @@
-export default function Screen3({ onReveal }: { onReveal: () => void }) {
-  return <ShortMessage onNext={onReveal} />;
-}
+import TypeWriter from "typewriter-effect";
 
-// TODO fix this
-function ShortMessage({ onNext }: { onNext: () => void }) {
+export default function Screen3({ onReveal }: { onReveal: () => void }) {
+  setTimeout(() => {
+    onReveal();
+  }, 5000);
+
   return (
-    <div>
-      <p>Yay! The duck is happy now!</p>
-      <button onClick={onNext}>Reveal your message</button>
+    <div className="flex items-center justify-center h-full w-full bg-sky-400 rounded-xl text-xl flex flex-col text-center lg:text-left lg:flex-row items-center gap-12">
+      <h1>
+        <TypeWriter
+          onInit={(typewriter) => {
+            typewriter.typeString("YUMMMMMMM!").start();
+          }}
+        />
+      </h1>
     </div>
   );
 }
