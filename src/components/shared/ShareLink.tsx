@@ -7,11 +7,11 @@ interface ShareLinkProps {
 
 export default function ShareLink(props: ShareLinkProps) {
   const { cardId } = props;
-  const domain = import.meta.env.VITE_DOMAIN_NAME_TEST;
+  // const testDomain = import.meta.env.VITE_DOMAIN_NAME_TEST;
   const prodDomain = import.meta.env.VITE_DOMAIN_NAME_PROD;
 
   const displayUrl = `${prodDomain}/view/${cardId}`;
-  const url = `${domain}/view/${cardId}`; // TODO use prodDomain when in production
+  const url = `${prodDomain}/view/${cardId}`; // NOTE: toggle this for environment
 
   const [copied, setCopied] = useState(false);
 
