@@ -10,11 +10,7 @@ export default function Error() {
         <div className="animate-pulse text-9xl leading-none">
           [ ER-{errorCode || 500} ]
         </div>
-        <h2>
-          Sorry, an error has occurred...
-          <br />
-          Please try again later :&#40;
-        </h2>
+        <p>Sorry, an error has occurred... Please try again later :&#40;</p>
         <Button variant="secondary" className="mt-8">
           <Link to="/">GO HOME</Link>
         </Button>
