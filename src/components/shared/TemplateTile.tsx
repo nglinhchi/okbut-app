@@ -16,9 +16,7 @@ export default function TemplateTile(template: Template) {
       </div>
       <div className="flex flex-col xl:flex-row xl:gap-4 w-full xl:self-end mt-4">
         <Button variant="muted" className="mt-2 w-full">
-          <Link to={`/view/${template.preview_card_id}`} target="_blank">
-            PREVIEW
-          </Link>
+          <Link to={`/view/${template.preview_card_id}`}>PREVIEW</Link>
         </Button>
         <Button variant="default" className="mt-2 w-full">
           <Link to={`/create/${template.id}`}>CREATE</Link>
