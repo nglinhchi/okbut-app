@@ -1,16 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+
 :root {
-  --template-primary: #ffb700;
-  --template-secondary: #ffd900;
+  --duck-template-primary: #ff9d00;
+  --duck-template-secondary: #ffd900;
+  --duck-template-accent: #994501;
+  --duck-template-tertiary: #ff6f91;
 }
 
 /* 
 TODO pixelated font for headings
+TODO UPPERCASE FOR HEADINGS
 */
 
-.bg-primary {
-  background-color: var(--template-primary);
+.duck_template {
+  font-size: 16px;
 }
 
-.bg-secondary {
-  background-color: var(--template-secondary);
+.duck_template .bg-primary {
+  background-color: var(--duck-template-primary);
+}
+
+.duck_template .bg-secondary {
+  background-color: var(--duck-template-secondary);
+}
+
+.duck_template .bg-accent {
+  background-color: var(--duck-template-accent);
+}
+
+.duck_template .bg-tertiary {
+  background-color: var(--duck-template-tertiary);
+}
+
+.duck_template p {
+  font-family: "Poppins", sans-serif;
+  text-transform: none;
+}
+
+.duck_template h1 {
+  font-family: "Pixelify Sans", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.25em;
+}
+
+.duck_template #inscription {
+  color: var(--duck-template-accent);
+  font-size: 1em;
 }
