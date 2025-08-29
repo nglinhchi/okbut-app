@@ -12,11 +12,13 @@ export default function DuckTemplate(props: TemplateProps) {
   const [screen, setScreen] = useState(1);
 
   return (
-    <>
+    <div className="w-full h-full duck_template transition-colors duration-500">
       {screen === 1 && <Screen1 onStart={() => setScreen(2)} />}
-      {screen === 2 && <Screen2 onFedCorrectly={() => setScreen(3)} />}
+      {screen === 2 && (
+        <Screen2 card={card} onFedCorrectly={() => setScreen(3)} />
+      )}
       {screen === 3 && <Screen3 onReveal={() => setScreen(4)} />}
       {screen === 4 && <Screen4 card={card} />}
-    </>
+    </div>
   );
 }

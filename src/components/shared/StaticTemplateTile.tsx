@@ -8,8 +8,10 @@ export default function StaticTemplateTile(template: Template) {
         src={template.image_url}
         alt={template.name}
       />
-      <p>{template.name}</p>
-      <p>{template.description}</p>
+      <div className="flex-grow">
+        <p>{template.name}</p>
+        <p>{template.description}</p>
+      </div>
     </div>
   );
 }

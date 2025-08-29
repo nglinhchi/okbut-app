@@ -1,6 +1,6 @@
 import type { TemplateProps } from "../../../pages/View";
 
-export default function MinimalistTemplate(props: TemplateProps) {
+export default function PeekabooTemplate(props: TemplateProps) {
   const { card } = props;
   return (
     <div>
