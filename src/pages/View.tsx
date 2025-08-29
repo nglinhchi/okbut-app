@@ -28,6 +28,9 @@ export default function View() {
     fetchCard();
   }, [cardId]);
 
+  if (!cardId) {
+    return <NotFound />;
+  }
   if (loading) return <Loading />;
   if (!card) return <NotFound />;
 
