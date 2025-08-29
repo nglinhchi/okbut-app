@@ -4,7 +4,7 @@ export async function getGifs(keyword: string) {
   const searchUrl = import.meta.env.VITE_GIPHY_SEARCH_URL!;
   const trendingUrl = import.meta.env.VITE_GIPHY_TRENDING_URL!;
   const apiKey = import.meta.env.VITE_GIPHY_API_KEY!;
-  const limit = 10;
+  const limit = 20;
   const offset = Math.floor(Math.random() * 20); // random offset for more variety
 
   const fetchUrl = keyword.length
