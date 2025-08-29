@@ -11,7 +11,6 @@ interface GifPickerProps {
 }
 
 export default function GifPicker(props: GifPickerProps) {
-  // TODO [low] search on pressing enter key
   const { onChange } = props;
   const [keyword, setKeyword] = useState("");
   const [gifs, setGifs] = useState<Gif[]>([]);
@@ -49,7 +48,6 @@ export default function GifPicker(props: GifPickerProps) {
     </div>
   );
 
-  // TODO show preview of selected gif if exists
   const preview = (
     <div className="w-full h-fit bg-gray-300 items-center justify-center rounded-lg p-4 flex">
       <img

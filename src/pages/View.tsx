@@ -29,7 +29,7 @@ export default function View() {
   }, [cardId]);
 
   if (loading) return <Loading />;
-  if (!card) return <NotFound />; // TODO redirect to 404 page
+  if (!card) return <NotFound />;
 
   const templateId = card.template_id;
   let cardTemplate: React.ReactNode;

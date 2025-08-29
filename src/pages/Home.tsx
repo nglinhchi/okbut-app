@@ -44,7 +44,6 @@ export default function Home() {
           heartfelt appreciation note, we've got you covered :&#41;
         </p>
       </div>
-      {/* TODO need consolidate grid layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 app-gradient-lg h-fit w-full py-[5vh] px-[10vw] justify-items-center align-items-center text-black">
         {templates.map((template: Template) =>
           template.published ? (
