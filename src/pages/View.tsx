@@ -7,6 +7,7 @@ import Logo from "../components/shared/Logo";
 import Loading from "../components/shared/Loading";
 import NotFound from "./NotFound";
 import DuckTemplate from "../components/templates/duck_template/DuckTemplate";
+import ScrollToTop from "../components/shared/ScrollToTop";
 
 // props interface used by all templates
 export interface TemplateProps {
@@ -52,6 +53,7 @@ export default function View() {
 
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      <ScrollToTop />
       {/* background gradient for bottom half */}
       <div className="absolute bottom-0 left-0 w-full h-1/2 app-gradient-lg z-0" />
 
