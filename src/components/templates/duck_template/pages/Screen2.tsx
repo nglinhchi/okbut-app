@@ -56,7 +56,7 @@ export default function Screen2(props: Screen2Props) {
         }`
       )}
     >
-      <DuckSprite action={duckAction} className="mt-12 lg:mt-0" />
+      <DuckSprite action={duckAction} className="mt-[10vh] lg:mt-0" />
       <div className="flex flex-col items-center justify-start gap-8">
         <h1 className="w-full">
           <TypeWriter

@@ -4,13 +4,23 @@ import type { Template } from "../../types";
 import { useAppContext } from "../context/AppContext";
 import TypeWriter from "typewriter-effect";
 import TeaserTemplateTile from "../components/shared/TeaserTemplateTile";
+import { useEffect, useState } from "react";
+import { cn } from "../../lib/utils";
 
 export default function Home() {
   const { templates } = useAppContext();
 
+  const [showDesccription, setShowDescription] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowDescription(true);
+    }, 7000); // show message after 7 seconds
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center w-full">
-      <div className="hero-section flex flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full text-gray-200">
+      <div className="hero-section flex h-screen flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full">
         <h1>
           <TypeWriter
             onInit={(typewriter) => {
@@ -22,7 +32,13 @@ export default function Home() {
             }}
           />
         </h1>
-        <p className="lg:w-[40%]">
+        <p
+          className={cn(
+            "lg:w-[40%]",
+            showDesccription ? "opacity-100" : "opacity-0",
+            "transition-opacity duration-2000"
+          )}
+        >
           <strong>OKBUT.io</strong> lets you send fun, personalised interactive
           cards to your special ones. Whether it's an unhinged inside joke or a
           heartfelt appreciation note, we've got you covered :&#41;

@@ -13,7 +13,7 @@ export default function TeaserTemplateTile(template: Template) {
         <p>{template.description}</p>
       </div>
       <div
-        className="flex w-full bg-ui-gradient rounded-xl px-4 py-6 mt-4
+        className="flex w-full bg-ui-gradient rounded-xl px-4 py-8 xl:py-2 mt-4
        items-center justify-center text-white font-bold text-xl"
       >
         COMING SOON!

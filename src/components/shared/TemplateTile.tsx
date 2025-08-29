@@ -14,13 +14,13 @@ export default function TemplateTile(template: Template) {
         <p>{template.name}</p>
         <p>{template.description}</p>
       </div>
-      <div className="flex flex-col xl:flex-row xl:gap-4 w-full xl:self-end">
-        <Button variant="muted" className="mt-4 w-full">
+      <div className="flex flex-col xl:flex-row xl:gap-4 w-full xl:self-end mt-4">
+        <Button variant="muted" className="mt-2 w-full">
           <Link to={`/view/${template.preview_card_id}`} target="_blank">
             PREVIEW
           </Link>
         </Button>
-        <Button variant="default" className="mt-4 w-full">
+        <Button variant="default" className="mt-2 w-full">
           <Link to={`/create/${template.id}`}>CREATE</Link>
         </Button>
       </div>

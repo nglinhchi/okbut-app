@@ -5,6 +5,7 @@ import type { Template } from "../../types";
 import CreateCardForm from "../components/shared/CreateCardForm";
 import Footer from "../components/shared/Footer";
 import TypeWriter from "typewriter-effect";
+import NotFound from "./NotFound";
 import ScrollToTop from "../components/shared/ScrollToTop";
 
 export default function Create() {
@@ -14,13 +15,13 @@ export default function Create() {
   const template: Template | undefined = templates.find(
     (t) => t.id === templateId
   );
-  const isValidTemplate = templateId !== undefined && template !== undefined;
+  const isValidTemplate =
+    templateId !== undefined && template !== undefined && template.published;
 
   return (
     <div>
       {!isValidTemplate ? (
-        // TODO handle invalid template_id (show error message)
-        <></>
+        <NotFound />
       ) : (
         <div className="flex flex-col items-center justify-center w-full">
           <ScrollToTop />

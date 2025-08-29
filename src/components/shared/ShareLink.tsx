@@ -7,10 +7,11 @@ interface ShareLinkProps {
 
 export default function ShareLink(props: ShareLinkProps) {
   const { cardId } = props;
+  const domain = import.meta.env.VITE_DOMAIN_NAME_TEST;
+  const prodDomain = import.meta.env.VITE_DOMAIN_NAME_PROD;
 
-  const displayUrl = `okbut.io/view/${cardId}`;
-  const url = `http://localhost:3000/view/${cardId}`; // TODO use actual domain in prod
-  // const url = `http://okbut.io/view/${cardId}`;
+  const displayUrl = `${prodDomain}/view/${cardId}`;
+  const url = `${domain}/view/${cardId}`; // TODO use prodDomain when in production
 
   const [copied, setCopied] = useState(false);
 
@@ -27,11 +28,15 @@ export default function ShareLink(props: ShareLinkProps) {
   };
 
   return (
-    <div className="w-fit h-fit bg-white rounded-2xl p-8 text-black shadow-xl flex flex-col md:flex-row items-center justify-center gap-4">
-      <div className="flex items-center justify-center px-8 py-4 border-2 border-black rounded-lg">
+    <div className="w-[80vw] md:w-fit h-fit bg-white rounded-2xl p-8 text-black shadow-xl flex flex-col md:flex-row items-center justify-center gap-4">
+      <div className="flex items-center justify-center px-8 py-4 border-2 border-black rounded-lg w-full md:w-fit text-center break-all">
         {displayUrl}
       </div>
-      <Button variant="muted" className="w-full md:w-fit" onClick={handleOpen}>
+      <Button
+        variant="muted"
+        className="w-full mt-2 md:mt-0 md:w-fit"
+        onClick={handleOpen}
+      >
         OPEN LINK
       </Button>
       <Button
