@@ -66,9 +66,9 @@ export default function Screen2(props: Screen2Props) {
                 .typeString(`HI ${card.recipient}.`)
                 .pauseFor(500)
                 .typeString(`<br /> IT'S ${card.sender}.`)
-                .pauseFor(500)
-                .typeString(`<br /> PLEASE FEED ME FOOD...`)
                 .pauseFor(1000)
+                .typeString(`<br /> PLEASE FEED ME FOOD...`)
+                .pauseFor(500)
                 .typeString(`<br/> BEFORE I GET HANGRY!`)
                 .start();
             }}

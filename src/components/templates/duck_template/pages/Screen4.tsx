@@ -16,7 +16,7 @@ export default function Screen4({ card }: Screen4Props) {
     setTimeout(() => {
       setShowInscription(true);
     }, 3000);
-  }, 9000);
+  }, 10000); // show message after 10 seconds
 
   return (
     <div className="flex flex-col md:flex-row w-full h-full bg-primary rounded-xl text-xl text-center md:text-left gap-8 p-6 md:p-8 overflow-hidden">
