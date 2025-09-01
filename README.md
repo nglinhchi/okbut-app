@@ -10,9 +10,7 @@
 
 ## Ok, but... What is this madness? 🤔
 
-> **Send hilariously interactive cards that are way more fun than your average birthday message. Because why settle for boring when you can make someone feed a hangry duck to unlock your secret message?**
-
-> **OKBUT.io is your answer to make your special ones feel special.**
+> **Send hilariously interactive cards that are way more fun than your average birthday message. Because why settle for boring when you can make someone feed a hangry duck to unlock your secret message? OKBUT.io is your answer to make your special ones feel special.**
 
 Currently featuring:
 
@@ -37,7 +35,7 @@ Currently featuring:
 3. Unlock the secret message
 4. Feel the feels ✨
 
-## Local Development 🛠️
+## Ok, but... What if I want to clone it and make my own version? 🛠️
 
 **Clone Repo:**
 
