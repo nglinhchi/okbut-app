@@ -6,13 +6,13 @@
 
 > **Do I regret it? No I don't.**
 
-> **Send hilariously interactive cards that are way more fun than your average birthday message. Because why settle for boring when you can make someone feed a hangry duck to unlock your secret message?**
-
 **by [chloecodes.io](https://chloecodes.io)**
 
 ## What is this madness? 🤔
 
-OKBUT.io lets you create personalized interactive cards for your special people. Whether it's an unhinged inside joke or heartfelt note – we've got templates that'll make your message unforgettable.
+> **Send hilariously interactive cards that are way more fun than your average birthday message. Because why settle for boring when you can make someone feed a hangry duck to unlock your secret message?**
+
+> **OKBUT.io is your answer to make your special ones feel special.**
 
 Currently featuring:
 
