@@ -38,7 +38,7 @@ Coming soon:
 3. Unlock the secret message
 4. Feel the feels ✨
 
-## Ok, but... What if I want make twists and make my own version? 🤔
+## Ok, but... What if I want to make twists and create my own version? 🤔
 
 **Clone repo:**
 
@@ -57,9 +57,9 @@ npm run dev
 
 **Test endpoints:**
 
-- [okbut.io](https://okbut.io) - Browse templates
-- [okbut.io/create/1](https://okbut.io/create/1) - Create a card
-- [okbut.io/view/4HxMpU6GCcLAG-BEetO2U](https://okbut.io/view/4HxMpU6GCcLAG-BEetO2U) - View a card
+- [okbut.io](https://okbut.io): Browse templates
+- [okbut.io/create/1](https://okbut.io/create/1): Create a card
+- [okbut.io/view/4HxMpU6GCcLAG-BEetO2U](https://okbut.io/view/4HxMpU6GCcLAG-BEetO2U): View a card
 
 ## Ok, but.. What's the Tech Stack? 🤔
 
