@@ -61,13 +61,13 @@ npm run dev
 - [okbut.io/create/1](https://okbut.io/create/1): Create a card
 - [okbut.io/view/4HxMpU6GCcLAG-BEetO2U](https://okbut.io/view/4HxMpU6GCcLAG-BEetO2U): View a card
 
-## Ok, but.. What's the Tech Stack? 🤔
+## Ok, but.. What's the stack like? 🤔
 
 - **FE**: React + TypeScript + TailwindCSS + GIPHY API
 - **BE**: Supabase
 - **Deployment**: Vercel
 
-## Ok, but... I don't wanna be in troubles with licensing 🤔
+## Ok, but... I don't wanna be in trouble 🤔
 
 This project is licensed under the "Do Whatever Makes You Happy" license.
 Just don't use it to send mean messages – the duck will find you 🦆
