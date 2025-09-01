@@ -15,6 +15,9 @@
 Currently featuring:
 
 - **🦆 Hangry Ducky**: Feed the duck or face the quack attack
+
+Coming soon:
+
 - **🎫 Peek-A-Boo**: Scratch away panels to reveal a hidden message
 - **💻 Terminal Tea**: Hack your way to "decrypt" a secret message
 
@@ -35,7 +38,7 @@ Currently featuring:
 3. Unlock the secret message
 4. Feel the feels ✨
 
-## Ok, but... What if I want to clone it and make my own version? 🛠️
+## Ok, but... What if I want make twists and make my own version? 🛠️
 
 **Clone Repo:**
 
@@ -58,14 +61,13 @@ npm run dev
 - [okbut.io/create/1](https://okbut.io/create/1) - Create a card
 - [okbut.io/view/4HxMpU6GCcLAG-BEetO2U](https://okbut.io/view/4HxMpU6GCcLAG-BEetO2U) - View a card
 
-### Tech Stack
+### Ok, but.. What's the Tech Stack?
 
-- **FE**: React + TypeScript + TailwindCSS
+- **FE**: React + TypeScript + TailwindCSS + GIPHY API
 - **BE**: Supabase
-- **GIFs**: GIPHY API
 - **Deployment**: Vercel
 
-## License 📄
+## Ok, but... I don't wanna be in troubles with licensing
 
 This project is licensed under the "Do Whatever Makes You Happy" license.
 Just don't use it to send mean messages – the duck will find you 🦆
