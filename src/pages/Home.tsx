@@ -22,6 +22,7 @@ export default function Home() {
                 .typeString("Ok, but...")
                 .pauseFor(1000)
                 .typeString(" hear me out.")
+                .pauseFor(1000)
                 .callFunction(() => {
                   setShowDescription(true);
                 })
