@@ -27,7 +27,7 @@ Coming soon:
 
 1. Visit [okbut.io](https://okbut.io)
 2. Pick a template that matches your chaos level
-3. Fill in sender/recipient names and a message (250 chars max – keep it spicy)
+3. Fill in sender/recipient names and a message
 4. Pick a GIF that captures the vibe
 5. Generate & share the magic link
 
