@@ -1,14 +1,14 @@
 # OKBUT.io 🦆
 
+**by [chloecodes.io](https://chloecodes.io)**
+
 > **Ok, but... hear me out.**
 
 > **Did I spend way to much time making pixel art ducks? Yes I did.**
 
 > **Do I regret it? No I don't.**
 
-**by [chloecodes.io](https://chloecodes.io)**
-
-## What is this madness? 🤔
+## Ok, but... What is this madness? 🤔
 
 > **Send hilariously interactive cards that are way more fun than your average birthday message. Because why settle for boring when you can make someone feed a hangry duck to unlock your secret message?**
 
@@ -20,22 +20,22 @@ Currently featuring:
 - **🎫 Peek-A-Boo**: Scratch away panels to reveal a hidden message
 - **💻 Terminal Tea**: Hack your way to "decrypt" a secret message
 
-## How to use 📋
+## Ok, but... How do I use it? 🤔
 
-### Card Receivers (the fun part):
-
-1. Click the link someone sent you
-2. Follow the prompts
-3. Unlock the secret message
-4. Feel the feels ✨
-
-### Card Creators (the plotting part):
+### Card Senders:
 
 1. Visit [okbut.io](https://okbut.io)
 2. Pick a template that matches your chaos level
 3. Fill in sender/recipient names and a message (250 chars max – keep it spicy)
 4. Pick a GIF that captures the vibe
 5. Generate & share the magic link
+
+### Card Recipients:
+
+1. Click the link someone sent you
+2. Follow the prompts
+3. Unlock the secret message
+4. Feel the feels ✨
 
 ## Local Development 🛠️
 
