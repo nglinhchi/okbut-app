@@ -2,11 +2,13 @@
 
 > **Ok, but... hear me out.**
 
-> **Did I spend way to much time making pixel art ducks? Yes. Did I regret it? No.**
+> **Did I spend way to much time making pixel art ducks? Yes I did.**
+
+> **Do I regret it? No I don't.**
 
 > **Send hilariously interactive cards that are way more fun than your average birthday message. Because why settle for boring when you can make someone feed a hangry duck to unlock your secret message?**
 
-> **by [chloecodes.io](https://chloecodes.io)**
+**by [chloecodes.io](https://chloecodes.io)**
 
 ## What is this madness? 🤔
 
