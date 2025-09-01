@@ -29,7 +29,7 @@ Coming soon:
 2. Pick a template that matches your chaos level
 3. Fill in sender/recipient names and a message
 4. Pick a GIF that captures the vibe
-5. Generate & share the magic link
+5. Generate & share the magic link 🔗
 
 ### Card Recipients:
 
@@ -38,9 +38,9 @@ Coming soon:
 3. Unlock the secret message
 4. Feel the feels ✨
 
-## Ok, but... What if I want make twists and make my own version? 🛠️
+## Ok, but... What if I want make twists and make my own version? 🤔
 
-**Clone Repo:**
+**Clone repo:**
 
 ```bash
 git clone https://github.com/nglinhchi/okbut-app.git
@@ -50,7 +50,7 @@ cp .env.example .env
 npm run dev
 ```
 
-**API Setup:**
+**API setup:**
 
 - [Supabase](https://supabase.com): `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY`
 - [GIPHY](https://developers.giphy.com): `VITE_GIPHY_API_KEY`
@@ -61,13 +61,13 @@ npm run dev
 - [okbut.io/create/1](https://okbut.io/create/1) - Create a card
 - [okbut.io/view/4HxMpU6GCcLAG-BEetO2U](https://okbut.io/view/4HxMpU6GCcLAG-BEetO2U) - View a card
 
-### Ok, but.. What's the Tech Stack?
+## Ok, but.. What's the Tech Stack? 🤔
 
 - **FE**: React + TypeScript + TailwindCSS + GIPHY API
 - **BE**: Supabase
 - **Deployment**: Vercel
 
-## Ok, but... I don't wanna be in troubles with licensing
+## Ok, but... I don't wanna be in troubles with licensing 🤔
 
 This project is licensed under the "Do Whatever Makes You Happy" license.
 Just don't use it to send mean messages – the duck will find you 🦆
