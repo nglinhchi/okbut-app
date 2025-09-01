@@ -14,12 +14,12 @@
 
 Currently featuring:
 
-- **🦆 Hangry Ducky**: Feed the duck or face the quack attack
+- **Hangry Ducky**: Feed the duck or face the quack attack 🦆
 
 Coming soon:
 
-- **🎫 Peek-A-Boo**: Scratch away panels to reveal a hidden message
-- **💻 Terminal Tea**: Hack your way to "decrypt" a secret message
+- **Peek-A-Boo**: Scratch away panels to reveal a hidden message 🎫
+- **Terminal Tea**: Hack your way to "decrypt" a secret message 💻
 
 ## Ok, but... How do I use it? 🤔
 
