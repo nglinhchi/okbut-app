@@ -4,19 +4,13 @@ import type { Template } from "../../types";
 import { useAppContext } from "../context/AppContext";
 import TypeWriter from "typewriter-effect";
 import TeaserTemplateTile from "../components/shared/TeaserTemplateTile";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { cn } from "../../lib/utils";
 
 export default function Home() {
   const { templates } = useAppContext();
 
   const [showDesccription, setShowDescription] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowDescription(true);
-    }, 7000); // show message after 7 seconds
-  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -28,6 +22,9 @@ export default function Home() {
                 .typeString("Ok, but...")
                 .pauseFor(1000)
                 .typeString(" hear me out.")
+                .callFunction(() => {
+                  setShowDescription(true);
+                })
                 .start();
             }}
           />
