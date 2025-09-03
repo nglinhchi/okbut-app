@@ -1,7 +1,9 @@
-<svg width="320" height="160" viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="320" height="160" fill="#F5F5F5"/>
-<rect width="320" height="160" fill="#E6B7F9"/>
-<circle cx="70.8571" cy="80" r="32" fill="black"/>
-<circle cx="160" cy="80" r="32" fill="black"/>
-<circle cx="249.143" cy="80" r="32" fill="black"/>
+<svg width="286" height="147" viewBox="0 0 286 147" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="285.353" height="147" rx="30" fill="black"/>
+<circle cx="82.5097" cy="84.4064" r="21.8129" fill="#A0A0A0"/>
+<circle cx="142.969" cy="62.3564" r="21.5758" fill="#A0A0A0"/>
+<circle cx="202.955" cy="71.129" r="21.8129" fill="#A0A0A0"/>
+<circle cx="85.7077" cy="79.0952" r="16.5311" fill="#C4C4C4"/>
+<circle cx="145.728" cy="58.2405" r="16.5311" fill="#C4C4C4"/>
+<circle cx="206.258" cy="66.8875" r="16.5311" fill="#C4C4C4"/>
 </svg>
