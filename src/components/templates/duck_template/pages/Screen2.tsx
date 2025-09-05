@@ -3,7 +3,7 @@ import { DuckSprite, type DuckAction } from "../sprites/DuckSprite";
 import FoodSprite from "../sprites/FoodSprite";
 import type { CardData } from "../../../../../types";
 import { cn } from "../../../../../lib/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Screen2Props {
   card: CardData;
@@ -16,12 +16,6 @@ export default function Screen2(props: Screen2Props) {
   const [hasFed, setHasFed] = useState(false);
   const [isFeeding, setIsFeeding] = useState(false);
   const [showFood, setShowFood] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowFood(true);
-    }, 32000); // show food options after 25 seconds of typewriting
-  }, []);
 
   function handleFeed(foodType: string) {
     setIsFeeding(true);
@@ -46,7 +40,7 @@ export default function Screen2(props: Screen2Props) {
   return (
     <div
       className={cn(
-        "flex items-center justify-start h-full w-full rounded-xl flex flex-col text-center lg:justify-center lg:text-left lg:flex-row gap-6 lg:gap-12",
+        "flex items-center justify-start h-full w-full rounded-xl flex-col text-center lg:justify-center lg:text-left lg:flex-row gap-6 lg:gap-12",
         `${
           duckAction === "die"
             ? "bg-accent"
@@ -64,20 +58,28 @@ export default function Screen2(props: Screen2Props) {
           )}
         >
           <TypeWriter
+            options={{
+              delay: 50, // deafult = 75ms
+              deleteSpeed: 25, // default = 50ms
+            }}
             onInit={(typewriter) => {
               typewriter
                 .pauseFor(1000)
                 .typeString(`HI ${card.recipient}.`)
                 .pauseFor(500)
                 .typeString(`<br /> IT'S ${card.sender}.`)
-                .pauseFor(2000)
+                .pauseFor(1000)
                 .deleteAll()
                 .typeString(`<br/> I WANTED TO TELL YOU SOMETHING...`)
-                .pauseFor(3000)
+                .pauseFor(1000)
                 .deleteAll()
                 .typeString(`<br /> BUT YOU MUST FEED THE DUCK FIRST...`)
-                .pauseFor(1500)
+                .pauseFor(1000)
                 .typeString(`<br/> BEFORE IT GETS HANGRY!!!`)
+                .pauseFor(1000)
+                .callFunction(() => {
+                  setShowFood(true);
+                })
                 .start();
             }}
           />

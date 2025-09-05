@@ -17,6 +17,10 @@ export default function Home() {
       <div className="hero-section flex h-screen flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full">
         <h1>
           <TypeWriter
+            options={{
+              delay: 50, // deafult = 75ms
+              deleteSpeed: 25, // default = 50ms
+            }}
             onInit={(typewriter) => {
               typewriter
                 .typeString("Ok, but...")

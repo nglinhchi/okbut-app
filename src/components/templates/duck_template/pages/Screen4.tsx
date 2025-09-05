@@ -43,6 +43,10 @@ export default function Screen4({ card }: Screen4Props) {
         <div className="flex flex-col gap-2">
           <h1>
             <TypeWriter
+              options={{
+                delay: 50, // deafult = 75ms
+                deleteSpeed: 25, // default = 50ms
+              }}
               onInit={(typewriter) => {
                 typewriter
                   .pauseFor(2000)
