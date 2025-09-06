@@ -6,11 +6,15 @@ import TypeWriter from "typewriter-effect";
 import TeaserTemplateTile from "../components/shared/TeaserTemplateTile";
 import { useState } from "react";
 import { cn } from "../../lib/utils";
+import Icon from "../components/shared/Icon";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const { templates } = useAppContext();
 
   const [showDesccription, setShowDescription] = useState(false);
+
+  const [showChevron, setShowChevron] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -30,6 +34,10 @@ export default function Home() {
                 .callFunction(() => {
                   setShowDescription(true);
                 })
+                .pauseFor(500)
+                .callFunction(() => {
+                  setShowChevron(true);
+                })
                 .start();
             }}
           />
@@ -45,8 +53,28 @@ export default function Home() {
           cards to your special ones. Whether it's an unhinged inside joke or a
           heartfelt appreciation note, we've got you covered :&#41;
         </p>
+        {/* CHEVRON DOWN appears after typewriter finishes */}
+        <div
+          className={`absolute bottom-16 transition-opacity duration-1000 cursor-pointer ${
+            showChevron ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => {
+            const readmeSection = document.querySelector("#templates");
+            if (readmeSection) {
+              readmeSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
+          <Icon
+            icon={faChevronDown}
+            className="text-2xl text-primary animate-bounce hover:text-white transition-colors"
+          />
+        </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 app-gradient-lg h-fit w-full py-[5vh] px-[10vw] justify-items-center align-items-center text-black">
+      <div
+        id="templates"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-8 app-gradient-lg h-fit w-full py-[5vh] px-[10vw] justify-items-center align-items-center text-black"
+      >
         {templates.map((template: Template) =>
           template.published ? (
             <TemplateTile key={template.id} {...template} />
@@ -55,6 +83,7 @@ export default function Home() {
           )
         )}
       </div>
+
       <Footer />
     </div>
   );
