@@ -3,7 +3,7 @@ import Button from "./Button";
 
 export default function TemplateTile(template: Template) {
   return (
-    <div className="template-tile flex flex-col items-center bg-white p-4 gap-2 rounded-2xl w-full h-full text-black text-align-left items-start shadow-xl">
+    <div className="template-tile flex flex-col bg-white p-4 gap-2 rounded-2xl w-full h-full text-black text-align-left items-start shadow-xl">
       <img
         className="w-full h-60 object-cover mb-4 rounded-xl"
         src={template.image_url}
