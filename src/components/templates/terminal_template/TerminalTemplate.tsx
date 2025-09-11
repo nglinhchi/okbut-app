@@ -93,3 +93,43 @@ const GifLine = (props: GifLineProps) => {
     />
   );
 };
+
+interface InputProps {
+  userInput: string;
+  setUserInput: (newValue: string) => void;
+  line: InputLine;
+  onSubmit: (line: InputLine, userInput: string) => void;
+}
+
+const Input = (props: InputProps) => {
+  const { userInput, setUserInput, line, onSubmit } = props;
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const [disabled, setDisabled] = useState(false);
+
+  // auto-focus when component mounts
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
+  return (
+    <input
+      ref={inputRef}
+      className="bg-transparent border-b border-yellow-300 focus:outline-none ml-2 text-white font-bold"
+      value={userInput}
+      onChange={(e) => {
+        setUserInput(e.target.value);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          setDisabled(true);
+          onSubmit(line as InputLine, userInput);
+        }
+      }}
+      autoFocus
+      disabled={disabled}
+    />
+  );
+};
