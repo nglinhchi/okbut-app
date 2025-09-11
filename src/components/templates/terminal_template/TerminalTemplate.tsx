@@ -287,47 +287,6 @@ export default function TerminalTemplate(props: TemplateProps) {
   );
 }
 
-/**
- * - [ ] default prefix for each line in terminal
- * - [ ] const text for
- *          - incorrect answer
- *          - correct answer
- * - [ ] animate loading bar
- * - [ ] animate text typing
- * - [ ] add giphy at the end (optional: click to open modal)
- * - [ ] each line should appear after a delay]
- * - [ ] line, allow optional user input + conditional rendering based on input
- * - [ ] scroll to bottom on new line
- *
- *
- * type of lines:
- * - normal text line (typewriter effect)
- * - progress bar line (animated)
- * - user input line (with conditional rendering)
- * - giphy/message line (image display)
-
- * - [ ] add giphy at the end (optional: click to open modal)
- * - [ ] each line should appear after a delay]
- * - [ ] line, allow optional user input + conditional rendering based on input
- * - [ ] scroll to bottom on new line
- *
- *
- * type of lines:
- * - normal text line (typewriter effect)
- * - progress bar line (animated)
- * - user input line (with conditional rendering)
- * - giphy/message line (image display)
-
-COMPONENTS
-- prefix
-- break line
-- info line
-- input line
-- progress bar line
-- giphy (message) line
-
-*/
-
 const Prefix = () => {
   return <div className="text-gray-500 pr-2">okbut:~/$</div>;
 };
@@ -498,3 +457,27 @@ const Input = (props: InputProps) => {
     />
   );
 };
+
+/**
+TODO:
+- [x] add giphy at the end (optional: click to open modal)
+- [x] each line should appear after a delay]
+- [x] line, allow optional user input + conditional rendering based on input
+- [x] scroll to bottom on new line
+- [ ] animate text typing for message
+
+LINE TYPES:
+- normal text line (typewriter effect)
+- progress bar line (animated)
+- user input line (with conditional rendering)
+- giphy/message line (image display)
+
+COMPONENTS:
+- prefix
+- break line
+- info line
+- input line
+- progress bar line
+- giphy (message) line
+
+*/
