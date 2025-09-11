@@ -1,4 +1,7 @@
+import "./TerminalTemplate.css";
 import type { TemplateProps } from "../../../pages/View";
+import { useState, useEffect, useRef } from "react";
+
 type LineCategory = "INFO" | "INPUT" | "BAR" | "GIF" | "BREAK";
 
 interface Line {
@@ -39,19 +42,292 @@ interface GifLine extends Line {
 
 export default function TerminalTemplate(props: TemplateProps) {
   const { card } = props;
-  return (
-    <div>
-      Terminal Template:
-      <p>from: {card.sender}</p>
-      <p>to: {card.recipient}</p>
-      <p>message: {card.message}</p>
-      <img
-        src={`https://media.giphy.com/media/${card.giphy_id}/giphy.gif`}
-        alt="Selected GIF"
-        className="max-h-96 w-auto mx-auto"
-      />
+
+  // ref to terminal -> whenever visibleLines changes, scroll to bottom
+  const terminalRef = useRef<HTMLDivElement>(null);
+
+  const lines: (BreakLine | InfoLine | InputLine | BarLine | GifLine)[] = [
+    { category: "INFO", duration: 500, prompt: "booting system..." },
+    {
+      category: "BAR",
+      duration: 2000,
+      onComplete: nextLine,
+    },
+    { category: "INFO", duration: 1000, prompt: "system booted." },
+    { category: "BREAK", duration: 200 },
+    { category: "INFO", duration: 800, prompt: `verifying user...` },
+    {
+      category: "INPUT",
+      duration: 500,
+      attempts: 1,
+      prompt: `are you ${card.recipient}? (y/n)`,
+      correctAnswer: (input: string) => input.trim().toLowerCase() === "y",
+      exitLine: {
+        category: "INFO",
+        duration: 500,
+        prompt: `access denied.`,
+        stopNextLine: true,
+        type: "exit",
+      },
+    },
+    {
+      category: "INPUT",
+      duration: 0,
+      attempts: 1,
+      prompt: `is ${card.sender} a nice person? (y/n)`,
+      correctAnswer: (input: string) => input.trim().toLowerCase() === "y",
+      continueLine: {
+        category: "INFO",
+        duration: 1500,
+        prompt: "user authenticated.",
+        stopNextLine: true,
+        type: "success",
+      },
+      exitLine: {
+        category: "INFO",
+        duration: 500,
+        prompt: `access denied.`,
+        type: "exit",
+      },
+    },
+    { category: "BREAK", duration: 500 },
+    {
+      category: "INFO",
+      prompt: `verifying access control...`,
+      duration: 800,
+    },
+    {
+      category: "INPUT",
+      duration: 0,
+      attempts: 3,
+      prompt: `${card.question?.toLowerCase()}`,
+      correctAnswer: (input: string) =>
+        input.trim().toLowerCase() === card.answer!.trim().toLowerCase(),
+      continueLine: {
+        category: "INFO",
+        prompt: "access granted.",
+        duration: 1500,
+        type: "success",
+      },
+      exitLine: {
+        category: "INFO",
+        duration: 500,
+        prompt: `incorrect. no more attempts allowed. access denied.`,
+        stopNextLine: true,
+        type: "exit",
+      },
+    },
+    { category: "BREAK", duration: 500 },
+    // {
+    //   category: "INFO",
+    //   duration: 500,
+    //   prompt: "loading tea.exe...",
+    // },
+    // { category: "BAR", duration: 500, onComplete: nextLine },
+    // { category: "INFO", duration: 100, prompt: "decrypting tea.exe..." },
+    // { category: "BAR", duration: 500, onComplete: nextLine },
+    { category: "INFO", duration: 100, prompt: "executing tea.exe..." },
+    { category: "BAR", duration: 2000, onComplete: nextLine },
+    { category: "INFO", duration: 1000, prompt: "." },
+    { category: "INFO", duration: 1000, prompt: "." },
+    { category: "INFO", duration: 1000, prompt: "." },
+    { category: "GIF", duration: 500, id: card.giphy_id! },
+    {
+      category: "INFO",
+      duration: 500,
+      prompt: card.message,
+      type: "message",
+    },
+  ];
+
+  const [currentLineIndex, setCurrentLineIndex] = useState<number>(0);
+
+  function nextLine() {
+    setCurrentLineIndex((prev) => prev + 1);
+  }
+
+  const [visibleLines, setVisibleLines] = useState<
+    (BreakLine | InfoLine | InputLine | BarLine | GifLine)[]
+  >([]);
+
+  const [displayingLines, setDisplayingLines] = useState<React.ReactNode[]>([]);
+
+  // handle user input
+
+  const [attempted, setAttempted] = useState<number>(0);
+
+  const handleUserInputSubmit = (line: InputLine, userInput: string) => {
+    const { attempts, correctAnswer, continueLine, exitLine } = line;
+
+    console.log("HANDLING", line);
+
+    const isSingleAttempt = attempts === 1;
+    const isMultiAttempt = attempts > 1;
+
+    const remainingAttempts = attempts - attempted - 1;
+    if (isMultiAttempt) setAttempted((prev) => prev + 1);
+
+    const isCorrectAnswer = correctAnswer(userInput);
+    const isIncorrectAnswer = !isCorrectAnswer;
+    const hasMoreAttempts = isMultiAttempt && remainingAttempts > 0;
+
+    if (isCorrectAnswer) {
+      if (continueLine) setVisibleLines((prev) => [...prev, continueLine]);
+      nextLine();
+    } else if (
+      (isSingleAttempt && isIncorrectAnswer) ||
+      (isMultiAttempt && isIncorrectAnswer && !hasMoreAttempts)
+    ) {
+      setVisibleLines((prev) => [...prev, exitLine]);
+      return;
+    } else if (isMultiAttempt && isIncorrectAnswer && hasMoreAttempts) {
+      const retryLine: InfoLine = {
+        category: "INFO",
+        duration: 500,
+        prompt: `incorrect. please try again. ${remainingAttempts} ${
+          remainingAttempts === 1 ? "attempt" : "attempts"
+        } left.`,
+        stopNextLine: true,
+        type: "retry",
+      };
+      setVisibleLines((prev) => [...prev, retryLine]);
+    }
+  };
+
+  // STEP 1: when currentLineIndex changes -> add that line to visibleLines
+  useEffect(() => {
+    if (currentLineIndex < lines.length) {
+      setVisibleLines((prev) => [...prev, lines[currentLineIndex]]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLineIndex]);
+
+  // STEP 2: when visibleLines changes -> add that line to displayingLines (render)
+  useEffect(() => {
+    if (visibleLines.length === 0) return;
+
+    const newLine = visibleLines[visibleLines.length - 1];
+
+    let newDisplayLine: React.ReactNode;
+    switch (newLine.category) {
+      case "INFO":
+        newDisplayLine = <InfoLine line={newLine as InfoLine} />;
+        break;
+      case "INPUT":
+        newDisplayLine = (
+          <InputLine
+            line={newLine as InputLine}
+            onSubmit={handleUserInputSubmit}
+          />
+        );
+        break;
+      case "BAR":
+        newDisplayLine = <BarLine line={newLine as BarLine} />;
+        break;
+      case "GIF":
+        newDisplayLine = <GifLine line={newLine as GifLine} />;
+        break;
+      case "BREAK":
+        newDisplayLine = <BreakLine />;
+        break;
+      default:
+        return;
+    }
+    setDisplayingLines((prev) => [...prev, newDisplayLine]);
+
+    // auto-advance after delay (except for INPUT and BAR lines)
+    if (
+      ((newLine.category === "INFO" && newLine.stopNextLine !== true) ||
+        newLine.category === "BREAK" ||
+        newLine.category === "GIF") &&
+      currentLineIndex < lines.length - 1
+    ) {
+      const delay = newLine.duration;
+      setTimeout(() => {
+        nextLine();
+      }, delay);
+    }
+
+    if (newLine.category === "INFO" && newLine.type === "retry") {
+      setTimeout(() => {
+        setVisibleLines((prev) => [...prev, lines[currentLineIndex]]);
+      }, 1000);
+    }
+
+    setTimeout(() => {
+      if (terminalRef.current) {
+        terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+      }
+    }, 50); // Small delay to ensure DOM has updated
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleLines]);
+
+  // window control buttons
+  const windowController = (
+    <div className="h-1/15 bg-primary flex flex-row items-center justify-start gap-2 pl-4">
+      <div className="h-[2vh] w-[2vh] rounded-full bg-black"></div>
+      <div className="h-[2vh] w-[2vh] rounded-full bg-black"></div>
+      <div className="h-[2vh] w-[2vh] rounded-full bg-black"></div>
     </div>
   );
+
+  return (
+    <div className="terminal_template w-full h-full rounded-xl p-8">
+      <div className="bg-black/40 backdrop-blur-sm text-green-500 font-mono h-full rounded-sm text-xs">
+        {windowController}
+        <div
+          ref={terminalRef}
+          className="p-4 h-14/15 w-full flex flex-col gap-1 overflow-y-auto items-start"
+        >
+          {displayingLines}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * - [ ] default prefix for each line in terminal
+ * - [ ] const text for
+ *          - incorrect answer
+ *          - correct answer
+ * - [ ] animate loading bar
+ * - [ ] animate text typing
+ * - [ ] add giphy at the end (optional: click to open modal)
+ * - [ ] each line should appear after a delay]
+ * - [ ] line, allow optional user input + conditional rendering based on input
+ * - [ ] scroll to bottom on new line
+ *
+ *
+ * type of lines:
+ * - normal text line (typewriter effect)
+ * - progress bar line (animated)
+ * - user input line (with conditional rendering)
+ * - giphy/message line (image display)
+
+ * - [ ] add giphy at the end (optional: click to open modal)
+ * - [ ] each line should appear after a delay]
+ * - [ ] line, allow optional user input + conditional rendering based on input
+ * - [ ] scroll to bottom on new line
+ *
+ *
+ * type of lines:
+ * - normal text line (typewriter effect)
+ * - progress bar line (animated)
+ * - user input line (with conditional rendering)
+ * - giphy/message line (image display)
+
+COMPONENTS
+- prefix
+- break line
+- info line
+- input line
+- progress bar line
+- giphy (message) line
+
+*/
+
 const Prefix = () => {
   return <div className="text-gray-500 pr-2">okbut:~/$</div>;
 };
