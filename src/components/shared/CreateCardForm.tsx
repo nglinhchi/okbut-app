@@ -22,6 +22,8 @@ export default function CreateCardForm(props: { templateId: string }) {
     recipient: "",
     message: "",
     giphy_id: "",
+    question: "",
+    answer: "",
   });
 
   const [isValidFormData, setIsValidFormData] = useState(true);
@@ -49,7 +51,18 @@ export default function CreateCardForm(props: { templateId: string }) {
     const isValidMessage = formData.message.trim().length > 0;
     const pickedGif = formData.giphy_id.trim().length > 0;
 
-    if (isValidSender && isValidRecipient && isValidMessage && pickedGif) {
+    const isTerminalTeaTemplate = template_id === "2"; // TODO need a better way to cross check
+    const isValidQuestion =
+      formData.question && formData.question.trim().length > 0;
+    const isValidAnswer = formData.answer && formData.answer.trim().length > 0;
+
+    if (
+      isValidSender &&
+      isValidRecipient &&
+      isValidMessage &&
+      pickedGif &&
+      (isTerminalTeaTemplate ? isValidQuestion && isValidAnswer : true)
+    ) {
       setIsValidFormData(true);
       try {
         const { error } = await insertCard(formData);
@@ -67,6 +80,27 @@ export default function CreateCardForm(props: { templateId: string }) {
       setIsValidFormData(false);
     }
   }
+
+  const terminalTeaFields = [
+    <Input
+      name="question"
+      value={formData.question || ""}
+      type="text"
+      label="Question for recipent"
+      placeholder="What is my favorite color?"
+      onChange={handleChange}
+      required
+    />,
+    <Input
+      name="answer"
+      value={formData.answer || ""}
+      type="text"
+      label="Answer"
+      placeholder="Blue"
+      onChange={handleChange}
+      required
+    />,
+  ];
 
   return (
     <div className="md:w-3/5 w-full h-fit bg-white rounded-2xl p-8 text-black shadow-xl flex flex-col gap-4">
@@ -88,6 +122,7 @@ export default function CreateCardForm(props: { templateId: string }) {
         onChange={handleChange}
         required
       />
+      {template_id === "2" && terminalTeaFields}
       <TextArea
         name="message"
         value={formData.message}

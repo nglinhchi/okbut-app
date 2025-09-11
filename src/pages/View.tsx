@@ -8,6 +8,7 @@ import Loading from "../components/shared/Loading";
 import NotFound from "./NotFound";
 import DuckTemplate from "../components/templates/duck_template/DuckTemplate";
 import ScrollToTop from "../components/shared/ScrollToTop";
+import TerminalTemplate from "../components/templates/terminal_template/TerminalTemplate";
 
 // props interface used by all templates
 export interface TemplateProps {
@@ -41,11 +42,11 @@ export default function View() {
     case "1":
       cardTemplate = <DuckTemplate card={card} />;
       break;
-    // case "2":
-    //   cardTemplate = <PeekabooTemplate card={card} />;
-    //   break;
+    case "2":
+      cardTemplate = <TerminalTemplate card={card} />;
+      break;
     // case "3":
-    //   cardTemplate = <TerminalTemplate card={card} />;
+    //   cardTemplate = <PeekabooTemplate card={card} />;
     //   break;
     default:
       return <NotFound />;

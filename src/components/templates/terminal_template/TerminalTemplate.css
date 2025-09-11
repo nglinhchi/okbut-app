@@ -1,0 +1,22 @@
+.terminal_template {
+  background-image: url("./assets/background.webp");
+  background-size: cover;
+  font-size: 16px;
+}
+
+:root {
+  --terminal-template-primary: #00ff00;
+  /* --terminal-template-accent: #994501; */
+}
+
+.terminal_template .bg-primary {
+  background-color: var(--terminal-template-primary);
+}
+
+.terminal_template > div {
+  border: 2px solid var(--terminal-template-primary);
+}
+
+.terminal_template .text-primary {
+  color: var(--terminal-template-primary);
+}
