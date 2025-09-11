@@ -52,6 +52,95 @@ export default function TerminalTemplate(props: TemplateProps) {
       />
     </div>
   );
+const Prefix = () => {
+  return <div className="text-gray-500 pr-2">okbut:~/$</div>;
+};
+
+const BreakLine = () => {
+  return (
+    <div className="flex flex-row items-start justify-start">
+      <Prefix />
+    </div>
+  );
+};
+
+interface InfoLineProps {
+  line: InfoLine;
+}
+
+const InfoLine = (props: InfoLineProps) => {
+  const { line } = props;
+  const { prompt } = line;
+
+  let className = "";
+
+  switch (line.type) {
+    case "retry":
+      className = "text-red-500";
+      break;
+    case "exit":
+      className = "text-red-500";
+      break;
+    case "message":
+      className = "text-blue-400";
+      break;
+    case "success":
+      className = "text-green-400";
+      break;
+    default:
+      className = "text-gray-300";
+  }
+
+  return (
+    <div className="flex flex-row items-start justify-start">
+      <Prefix />
+      <div className={className}>{prompt}</div>
+    </div>
+  );
+};
+
+interface BarLineProps {
+  line: BarLine;
+}
+
+const BarLine = (props: BarLineProps) => {
+  const { line } = props;
+  const [progress, setProgress] = useState(0);
+  const { duration, onComplete } = line;
+
+  useEffect(() => {
+    const totalSteps = 20; // total blocks
+    const interval = duration / totalSteps; // load time per block
+
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        const increment = Math.floor(Math.random() * 3) + 1; // 1-3 blocks at a time
+        const newProgress = Math.min(prev + increment, totalSteps);
+        if (newProgress === totalSteps) {
+          clearInterval(progressInterval);
+          setTimeout(() => {
+            onComplete();
+          }, duration); // Small delay to ensure animation completes
+        }
+        return newProgress;
+      });
+    }, interval / 3); // update more frequently for smoother animation
+
+    return () => clearInterval(progressInterval);
+  }, [duration, onComplete]);
+
+  const filled = "█".repeat(progress);
+  const empty = "░".repeat(20 - progress);
+
+  return (
+    <div className="flex flex-row items-start justify-start">
+      <Prefix />
+      {filled}
+      {empty}
+    </div>
+  );
+};
+
 interface InputLineProps {
   line: InputLine;
   onSubmit: (line: InputLine, userInput: string) => void;
