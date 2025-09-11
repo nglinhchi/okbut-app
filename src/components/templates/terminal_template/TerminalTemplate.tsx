@@ -52,4 +52,44 @@ export default function TerminalTemplate(props: TemplateProps) {
       />
     </div>
   );
+interface InputLineProps {
+  line: InputLine;
+  onSubmit: (line: InputLine, userInput: string) => void;
 }
+
+const InputLine = (props: InputLineProps) => {
+  const { line, onSubmit } = props;
+  const { prompt } = line;
+
+  const [userInput, setUserInput] = useState<string>("");
+  return (
+    <div className="flex flex-row items-start justify-start">
+      <Prefix />
+      <div className="flex flex-row text-cyan-300">
+        {prompt}
+        <Input
+          userInput={userInput}
+          setUserInput={setUserInput}
+          line={line}
+          onSubmit={() => onSubmit(line, userInput)}
+        />
+      </div>
+    </div>
+  );
+};
+
+interface GifLineProps {
+  line: GifLine;
+}
+
+const GifLine = (props: GifLineProps) => {
+  const { line } = props;
+  const { id } = line;
+  return (
+    <img
+      src={`https://media.giphy.com/media/${id}/giphy.gif`}
+      alt="Selected GIF"
+      className="max-h-96 w-auto"
+    />
+  );
+};
