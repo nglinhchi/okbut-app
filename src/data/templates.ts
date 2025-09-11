@@ -14,7 +14,7 @@ export const TEMPLATES: Template[] = [
     name: `Terminal Tea`,
     description: `Not an average card, for an average person. Crack a common-sense question to unlock the message. Be wise… or be forever locked out of the tea.`,
     image_url: `/assets/terminal.jpg`,
-    preview_card_id: ``,
+    preview_card_id: `m97kYGZQ1y-BjKvDAAhLf`,
     published: true,
   },
   {
