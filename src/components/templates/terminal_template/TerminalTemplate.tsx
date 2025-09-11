@@ -465,6 +465,7 @@ TODO:
 - [x] line, allow optional user input + conditional rendering based on input
 - [x] scroll to bottom on new line
 - [ ] animate text typing for message
+- [ ] click to expand message + gif
 
 LINE TYPES:
 - normal text line (typewriter effect)
