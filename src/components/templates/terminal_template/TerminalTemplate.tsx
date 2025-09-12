@@ -48,8 +48,6 @@ export default function TerminalTemplate(props: TemplateProps) {
 
   const [canAdvance, setCanAdvance] = useState(false);
 
-  const [isWaitingForInput, setIsWaitingForInput] = useState(false);
-
   const lines: (BreakLine | InfoLine | InputLine | BarLine | GifLine)[] = [
     { category: "INFO", duration: 500, prompt: "booting system..." },
     {
@@ -180,8 +178,6 @@ export default function TerminalTemplate(props: TemplateProps) {
 
   const handleUserInputSubmit = (line: InputLine, userInput: string) => {
     const { attempts, correctAnswer, continueLine, exitLine } = line;
-
-    setIsWaitingForInput(false);
 
     const isSingleAttempt = attempts === 1;
     const isMultiAttempt = attempts > 1;
