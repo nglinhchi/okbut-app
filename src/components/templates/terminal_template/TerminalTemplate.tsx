@@ -164,34 +164,33 @@ export default function TerminalTemplate(props: TemplateProps) {
     const isSingleAttempt = attempts === 1;
     const isMultiAttempt = attempts > 1;
 
-    const remainingAttempts = attempts - attempted - 1;
-    if (isMultiAttempt) setAttempted((prev) => prev + 1);
-
-    const isCorrectAnswer = correctAnswer(userInput);
-    const isIncorrectAnswer = !isCorrectAnswer;
-    const hasMoreAttempts = isMultiAttempt && remainingAttempts > 0;
-
-    if (isCorrectAnswer) {
+    if (correctAnswer(userInput)) {
       if (continueLine) setVisibleLines((prev) => [...prev, continueLine]);
       nextLine();
-    } else if (
-      (isSingleAttempt && isIncorrectAnswer) ||
-      (isMultiAttempt && isIncorrectAnswer && !hasMoreAttempts)
-    ) {
+      return;
+    } else if (isSingleAttempt) {
       setVisibleLines((prev) => [...prev, exitLine]);
       return;
-    } else if (isMultiAttempt && isIncorrectAnswer && hasMoreAttempts) {
-      const retryLine: InfoLine = {
-        category: "INFO",
-        duration: 500,
-        prompt: `incorrect. please try again. ${remainingAttempts} ${
-          remainingAttempts === 1 ? "attempt" : "attempts"
-        } left.`,
-        stopNextLine: true,
-        type: "retry",
-      };
-      setVisibleLines((prev) => [...prev, retryLine]);
+    } else if (isMultiAttempt) {
+      const remainingAttempts = attempts - attempted - 1;
+      if (remainingAttempts === 0) {
+        setVisibleLines((prev) => [...prev, exitLine]);
+        return;
+      } else {
+        setAttempted((prev) => prev + 1);
+        const retryLine: InfoLine = {
+          category: "INFO",
+          duration: 500,
+          prompt: `incorrect. please try again. ${remainingAttempts} ${
+            remainingAttempts === 1 ? "attempt" : "attempts"
+          } left.`,
+          stopNextLine: true,
+          type: "retry",
+        };
+        setVisibleLines((prev) => [...prev, retryLine]);
+      }
     }
+    return;
   };
 
   // STEP 1: when currentLineIndex changes -> add that line to visibleLines
