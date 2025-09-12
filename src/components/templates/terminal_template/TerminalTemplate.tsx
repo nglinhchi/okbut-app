@@ -323,7 +323,12 @@ export default function TerminalTemplate(props: TemplateProps) {
 }
 
 const Prefix = () => {
-  return <div className="text-gray-500 pr-2">okbut:~/$</div>;
+  return (
+    <div className="text-gray-500 pr-2">
+      <span className="hidden lg:inline">okbut:~/$</span>
+      <span className="lg:hidden">~/$</span>
+    </div>
+  );
 };
 
 const BreakLine = () => {
