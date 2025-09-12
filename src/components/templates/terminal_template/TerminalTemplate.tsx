@@ -31,13 +31,13 @@ interface InputLine extends Line {
 
 interface BarLine extends Line {
   category: "BAR";
-  onComplete: () => void;
 }
 
 // TODO might change to include both message + gif
 interface GifLine extends Line {
   category: "GIF";
   id: string;
+  message: string;
 }
 
 export default function TerminalTemplate(props: TemplateProps) {
@@ -46,12 +46,15 @@ export default function TerminalTemplate(props: TemplateProps) {
   // ref to terminal -> whenever visibleLines changes, scroll to bottom
   const terminalRef = useRef<HTMLDivElement>(null);
 
+  const [canAdvance, setCanAdvance] = useState(false);
+
+  const [isWaitingForInput, setIsWaitingForInput] = useState(false);
+
   const lines: (BreakLine | InfoLine | InputLine | BarLine | GifLine)[] = [
     { category: "INFO", duration: 500, prompt: "booting system..." },
     {
       category: "BAR",
       duration: 2000,
-      onComplete: nextLine,
     },
     { category: "INFO", duration: 1000, prompt: "system booted." },
     { category: "BREAK", duration: 200 },
@@ -74,7 +77,7 @@ export default function TerminalTemplate(props: TemplateProps) {
       category: "INPUT",
       duration: 0,
       attempts: 1,
-      prompt: `is ${card.sender} a nice person? (y/n)`,
+      prompt: `do you think ${card.sender} is a nice person? (y/n)`,
       correctAnswer: (input: string) => input.trim().toLowerCase() === "y",
       continueLine: {
         category: "INFO",
@@ -118,31 +121,50 @@ export default function TerminalTemplate(props: TemplateProps) {
       },
     },
     { category: "BREAK", duration: 500 },
+    { category: "BREAK", duration: 500 },
+    { category: "INFO", duration: 100, prompt: "executing tea.exe..." },
+    { category: "BAR", duration: 1000 },
+    { category: "BAR", duration: 1000 },
+    { category: "BAR", duration: 1000 },
+    { category: "BAR", duration: 1000 },
+    { category: "BAR", duration: 1000 },
+    { category: "BREAK", duration: 500 },
+    { category: "INFO", duration: 100, prompt: "comfirming operation..." },
+    {
+      category: "INPUT",
+      duration: 1000,
+      attempts: 1,
+      prompt: `spill tea.exe? (y/n)`,
+      correctAnswer: (input: string) => input.trim().toLowerCase() === "y",
+      exitLine: {
+        category: "INFO",
+        duration: 0,
+        prompt: `operation cancelled.`,
+        stopNextLine: true,
+        type: "exit",
+      },
+    },
+    { category: "INFO", duration: 500, prompt: "." },
+    { category: "INFO", duration: 500, prompt: "." },
+    { category: "INFO", duration: 1000, prompt: "." },
+    {
+      category: "GIF",
+      duration: 2000,
+      id: card.giphy_id!,
+      message: card.message,
+    },
     // {
     //   category: "INFO",
     //   duration: 500,
-    //   prompt: "loading tea.exe...",
+    //   prompt: card.message,
+    //   type: "message",
     // },
-    // { category: "BAR", duration: 500, onComplete: nextLine },
-    // { category: "INFO", duration: 100, prompt: "decrypting tea.exe..." },
-    // { category: "BAR", duration: 500, onComplete: nextLine },
-    { category: "INFO", duration: 100, prompt: "executing tea.exe..." },
-    { category: "BAR", duration: 2000, onComplete: nextLine },
-    { category: "INFO", duration: 1000, prompt: "." },
-    { category: "INFO", duration: 1000, prompt: "." },
-    { category: "INFO", duration: 1000, prompt: "." },
-    { category: "GIF", duration: 500, id: card.giphy_id! },
-    {
-      category: "INFO",
-      duration: 500,
-      prompt: card.message,
-      type: "message",
-    },
   ];
 
   const [currentLineIndex, setCurrentLineIndex] = useState<number>(0);
 
   function nextLine() {
+    if (!canAdvance) return;
     setCurrentLineIndex((prev) => prev + 1);
   }
 
@@ -159,13 +181,14 @@ export default function TerminalTemplate(props: TemplateProps) {
   const handleUserInputSubmit = (line: InputLine, userInput: string) => {
     const { attempts, correctAnswer, continueLine, exitLine } = line;
 
-    console.log("HANDLING", line);
+    setIsWaitingForInput(false);
 
     const isSingleAttempt = attempts === 1;
     const isMultiAttempt = attempts > 1;
 
     if (correctAnswer(userInput)) {
       if (continueLine) setVisibleLines((prev) => [...prev, continueLine]);
+      setCanAdvance(true);
       nextLine();
       return;
     } else if (isSingleAttempt) {
@@ -193,7 +216,12 @@ export default function TerminalTemplate(props: TemplateProps) {
     return;
   };
 
-  // STEP 1: when currentLineIndex changes -> add that line to visibleLines
+  const handleBarComplete = () => {
+    setCanAdvance(true);
+    nextLine();
+  };
+
+  // STEP 1: when index changes -> add new line to visibleLines
   useEffect(() => {
     if (currentLineIndex < lines.length) {
       setVisibleLines((prev) => [...prev, lines[currentLineIndex]]);
@@ -201,18 +229,21 @@ export default function TerminalTemplate(props: TemplateProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLineIndex]);
 
-  // STEP 2: when visibleLines changes -> add that line to displayingLines (render)
+  // STEP 2: when visibleLines changes -> add new line to displayingLines (render)
   useEffect(() => {
     if (visibleLines.length === 0) return;
 
+    // push new line to displayingLines
     const newLine = visibleLines[visibleLines.length - 1];
-
     let newDisplayLine: React.ReactNode;
     switch (newLine.category) {
       case "INFO":
-        newDisplayLine = <InfoLine line={newLine as InfoLine} />;
+        const line = newLine as InfoLine;
+        setCanAdvance(line.type !== "exit" && line.type !== "retry");
+        newDisplayLine = <InfoLine line={line} />;
         break;
       case "INPUT":
+        setCanAdvance(false);
         newDisplayLine = (
           <InputLine
             line={newLine as InputLine}
@@ -221,31 +252,24 @@ export default function TerminalTemplate(props: TemplateProps) {
         );
         break;
       case "BAR":
-        newDisplayLine = <BarLine line={newLine as BarLine} />;
+        setCanAdvance(false);
+        newDisplayLine = (
+          <BarLine line={newLine as BarLine} onComplete={handleBarComplete} />
+        );
         break;
       case "GIF":
+        setCanAdvance(true);
         newDisplayLine = <GifLine line={newLine as GifLine} />;
         break;
       case "BREAK":
+        setCanAdvance(true);
         newDisplayLine = <BreakLine />;
         break;
       default:
+        setCanAdvance(false);
         return;
     }
     setDisplayingLines((prev) => [...prev, newDisplayLine]);
-
-    // auto-advance after delay (except for INPUT and BAR lines)
-    if (
-      ((newLine.category === "INFO" && newLine.stopNextLine !== true) ||
-        newLine.category === "BREAK" ||
-        newLine.category === "GIF") &&
-      currentLineIndex < lines.length - 1
-    ) {
-      const delay = newLine.duration;
-      setTimeout(() => {
-        nextLine();
-      }, delay);
-    }
 
     if (newLine.category === "INFO" && newLine.type === "retry") {
       setTimeout(() => {
@@ -253,14 +277,26 @@ export default function TerminalTemplate(props: TemplateProps) {
       }, 1000);
     }
 
+    // scroll to botton
     setTimeout(() => {
       if (terminalRef.current) {
         terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
       }
-    }, 50); // Small delay to ensure DOM has updated
+    }, 50); // small delay to ensure DOM has updated
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visibleLines]);
+
+  useEffect(() => {
+    if (visibleLines.length === 0) return;
+    // start the sequence
+    const lastLine = visibleLines[visibleLines.length - 1];
+    const delay = Math.max(lastLine.duration, 1000);
+    setTimeout(() => {
+      nextLine();
+    }, delay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayingLines]);
 
   // window control buttons
   const windowController = (
@@ -335,12 +371,13 @@ const InfoLine = (props: InfoLineProps) => {
 
 interface BarLineProps {
   line: BarLine;
+  onComplete: () => void;
 }
 
 const BarLine = (props: BarLineProps) => {
-  const { line } = props;
+  const { line, onComplete } = props;
   const [progress, setProgress] = useState(0);
-  const { duration, onComplete } = line;
+  const { duration } = line;
 
   useEffect(() => {
     const totalSteps = 20; // total blocks
@@ -354,14 +391,14 @@ const BarLine = (props: BarLineProps) => {
           clearInterval(progressInterval);
           setTimeout(() => {
             onComplete();
-          }, duration); // Small delay to ensure animation completes
+          }, 100); // Small delay to ensure animation completes
         }
         return newProgress;
       });
     }, interval / 3); // update more frequently for smoother animation
 
     return () => clearInterval(progressInterval);
-  }, [duration, onComplete]);
+  }, [duration]);
 
   const filled = "█".repeat(progress);
   const empty = "░".repeat(20 - progress);
@@ -386,10 +423,12 @@ const InputLine = (props: InputLineProps) => {
 
   const [userInput, setUserInput] = useState<string>("");
   return (
-    <div className="flex flex-row items-start justify-start">
-      <Prefix />
-      <div className="flex flex-row text-cyan-300">
-        {prompt}
+    <div className="flex flex-col items-start justify-start">
+      <div className="flex">
+        <Prefix /> <div className="text-cyan-300">{prompt}</div>
+      </div>
+      <div className="flex">
+        <Prefix />
         <Input
           userInput={userInput}
           setUserInput={setUserInput}
@@ -407,13 +446,16 @@ interface GifLineProps {
 
 const GifLine = (props: GifLineProps) => {
   const { line } = props;
-  const { id } = line;
+  const { id, message } = line;
   return (
-    <img
-      src={`https://media.giphy.com/media/${id}/giphy.gif`}
-      alt="Selected GIF"
-      className="max-h-96 w-auto"
-    />
+    <div className="flex flex-col items-start justify-start">
+      <img
+        src={`https://media.giphy.com/media/${id}/giphy.gif`}
+        alt="Selected GIF"
+        className="max-h-96 w-auto"
+      />
+      {message}
+    </div>
   );
 };
 
@@ -481,3 +523,24 @@ COMPONENTS:
 - giphy (message) line
 
 */
+
+/**
+setCanAdvance(false)
+- on initialization
+- render: info (stopNextLine) + input + bar
+
+setCanAdvance(true)
+- render: info (no stopNextLine) + break + gif
+- correct input
+- bar onComplete
+
+nextLine
+- canAdvance = true
+
+FLOW
+index change 
+-> add new line to visiblelines 
+-> add new line to displaying lines 
+-> advance to next line
+
+ */
