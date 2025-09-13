@@ -12,7 +12,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 export default function Home() {
   const { templates } = useAppContext();
 
-  const [showDesccription, setShowDescription] = useState(false);
+  // const [showDesccription, setShowDescription] = useState(false);
 
   const [showChevron, setShowChevron] = useState(false);
 
@@ -31,10 +31,10 @@ export default function Home() {
                 .pauseFor(1000)
                 .typeString(" hear me out.")
                 .pauseFor(1000)
-                .callFunction(() => {
-                  setShowDescription(true);
-                })
-                .pauseFor(500)
+                // .callFunction(() => {
+                // setShowDescription(true);
+                // })
+                // .pauseFor(500)
                 .callFunction(() => {
                   setShowChevron(true);
                 })
@@ -44,9 +44,9 @@ export default function Home() {
         </h1>
         <p
           className={cn(
-            "lg:w-[40%]",
-            showDesccription ? "opacity-100" : "opacity-0",
-            "transition-opacity duration-2000"
+            "lg:w-[40%]"
+            // showDesccription ? "opacity-100" : "opacity-0",
+            // "transition-opacity duration-2000"
           )}
         >
           <strong>OKBUT.io</strong> lets you send fun, personalised interactive
