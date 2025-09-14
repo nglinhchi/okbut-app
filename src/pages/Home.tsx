@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="hero-section flex h-screen flex-col items-center justify-center gap-8 px-[20vw] py-[15vh] text-center w-full">
-        <h1>
+        <h1 className="text-4xl lg:text-6xl font-bold">
           <TypeWriter
             options={{
               delay: 50, // deafult = 75ms
